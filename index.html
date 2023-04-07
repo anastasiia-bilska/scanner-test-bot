@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Сканер штрих кодів | Аптека 9-1-1</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.4/html5-qrcode.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <!-- <style>{{{payload.style}}}</style> -->
+  </head>
+  <body onload="showScaner()">
+    <header class="header">
+      <img
+        src="img/logo.svg"
+        alt="Логотип - Аптека 9-1-1"
+        class="header__logo"
+      />
+    </header>
+
+    <main>
+      <div class="start">
+        <h1 class="start__title">Сканер QR-кодів</h1>
+        <p class="start__instruction">
+          Наведіть камеру на QR-код таким чином, щоб він опинився по центру
+          квадрата-сканера 🎯
+        </p>
+      </div>
+      <div class="scanner">
+        <div id="reader-wrap" class="reader-wrap">
+          <div id="loader-wrapper" class="loader__wrapper">
+            <svg class="loader"></svg>
+          </div>
+          <div id="reader" class="reader"></div>
+        </div>
+        <p class="warning">
+          <span class="warning__star">*</span>
+          Якщо ви не бачите сканер,
+          <strong class="warning__important"
+            >надайте дозвіл на використання камери</strong
+          >
+          у вашому браузері!
+        </p>
+      </div>
+    </main>
+
+    <footer>
+      <div class="unsuccessful">
+        <h2 class="unsuccessful__title">Не виходить?</h2>
+        <p class="unsuccessful__instruction">Спробуйте інший сканер 👇</p>
+      </div>
+      <a class="switcher" href="/dynamsoft">
+        Змінити сканер
+      </a>
+    </footer>
+    
+    <!-- <script>{{{payload.script}}}</script> -->
+    <script src="app.js"></script>
+  </body>
+</html>
