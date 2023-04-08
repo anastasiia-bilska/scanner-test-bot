@@ -73,11 +73,18 @@ function scanerResult(code) {
 
   // alert('QR успішно відскановано ✅\n Перевіряємо інформацію ⏳');
 
+  // window.Telegram.WebApp.showAlert(
+  //   "QR успішно відскановано ✅\n Перевіряємо інформацію ⏳"
+  // );
+
   window.Telegram.WebApp.showAlert(
-    "QR успішно відскановано ✅\n Перевіряємо інформацію ⏳", () => 
-      window.Telegram.WebApp.close()
+    "QR успішно відскановано ✅\n Перевіряємо інформацію ⏳",
+    function () {
+      window.Telegram.WebApp.close();
+    }
   );
 
+  telegram.showConfirm(message, confirmCallback, cancelCallback);
   lastCode = code;
 
   setTimeout(() => {
