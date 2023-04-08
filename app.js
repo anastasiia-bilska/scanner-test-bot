@@ -73,7 +73,7 @@ function scanerResult(code) {
 
   // alert('QR успішно відскановано ✅\n Перевіряємо інформацію ⏳');
 
-  window.Telegram.WebApp.showAlert('QR успішно відскановано ✅\n Перевіряємо інформацію ⏳')
+  window.Telegram.WebApp.showAlert('QR успішно відскановано ✅\n Перевіряємо інформацію ⏳', setTimeout(redirect, 500))
 
   lastCode = code;
 
@@ -119,7 +119,7 @@ function scanerResult(code) {
     // редирект
     // setTimeout(redirect, 500);
 
-  setTimeout(redirect, 500);
+  // setTimeout(redirect, 500);
 
   return;
 }
