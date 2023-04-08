@@ -77,7 +77,7 @@ function scanerResult(code) {
   //   "QR успішно відскановано ✅\n Перевіряємо інформацію ⏳"
   // );
 
-  window.Telegram.WebApp.showAlert(
+  Telegram.WebApp.showAlert(
     "QR успішно відскановано ✅\n Перевіряємо інформацію ⏳",
     function () {
       window.Telegram.WebApp.close();
