@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Сканер штрих кодів | Аптека 9-1-1</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/dynamsoft-javascript-barcode@9.6.2/dist/dbr.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.4/html5-qrcode.min.js"></script>
+    <link rel="stylesheet" href="style.css">
     <!-- <style>{{{payload.style}}}</style> -->
-    <link rel="stylesheet" href="style-dynamsoft.css">
   </head>
   <body onload="showScaner()">
     <header class="header">
       <img
-        src="/img/logo.svg"
+        src="img/logo.svg"
         alt="Логотип - Аптека 9-1-1"
         class="header__logo"
       />
@@ -28,18 +28,11 @@
         </p>
       </div>
       <div class="scanner">
-        <div id="app" class="app">
-          <div id="barcode-scaner" class="barcode-scaner">
-            <div id="dce-bg-loading" class="dce-bg-loading">
-              <svg class="loader"></svg>
-            </div>
-
-            <div class="dce-scanarea">
-              <div class="dce-scanlight"></div>
-            </div>
-
-            <div id="dce-video-container" class="dce-video-container"></div>
+        <div id="reader-wrap" class="reader-wrap">
+          <div id="loader-wrapper" class="loader__wrapper">
+            <svg class="loader"></svg>
           </div>
+          <div id="reader" class="reader"></div>
         </div>
         <p class="warning">
           <span class="warning__star">*</span>
@@ -57,10 +50,12 @@
         <h2 class="unsuccessful__title">Не виходить?</h2>
         <p class="unsuccessful__instruction">Спробуйте інший сканер 👇</p>
       </div>
-      <a class="switcher" href="index.html">Змінити сканер</a>
+      <a class="switcher" href="index.html">
+        Змінити сканер
+      </a>
     </footer>
-
+    
     <!-- <script>{{{payload.script}}}</script> -->
-    <script src="app-dynamsoft.js"></script>
+    <script src="app.js"></script>
   </body>
 </html>
