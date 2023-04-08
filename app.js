@@ -71,7 +71,7 @@ function scanerResult(code) {
     return;
   }
 
-  // alert('QR успішно відскановано ✅\n Перевіряємо інформацію ⏳');
+  alert('QR успішно відскановано ✅\n Перевіряємо інформацію ⏳');
 
   // window.Telegram.WebApp.showAlert(
   //   "QR успішно відскановано ✅\n Перевіряємо інформацію ⏳"
@@ -79,7 +79,7 @@ function scanerResult(code) {
 
   window.Telegram.WebApp.showAlert(
     "QR успішно відскановано ✅\n Перевіряємо інформацію ⏳",
-    setTimeout(redirect, 500)
+    redirect
   );
 
   // telegram.showConfirm(message, confirmCallback, cancelCallback);
