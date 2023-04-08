@@ -71,7 +71,9 @@ function scanerResult(code) {
     return;
   }
 
-  alert('QR успішно відскановано ✅\n Перевіряємо інформацію ⏳');
+  // alert('QR успішно відскановано ✅\n Перевіряємо інформацію ⏳');
+
+  window.Telegram.WebApp.showAlert('QR успішно відскановано ✅\n Перевіряємо інформацію ⏳')
 
   lastCode = code;
 
