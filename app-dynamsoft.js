@@ -4,9 +4,9 @@ const urlParams = new URLSearchParams(window.location.search);
 const channel = urlParams.get('channel');
 const phone = urlParams.get('phone');
 
-if (channel === 'telegram') {
+// if (channel === 'telegram') {
   window.Telegram.WebApp.expand();
-}
+// }
 // trial лицензия на Dynamsoft Barcode Scanner
 let scanerNewLicense =
   'DLS2eyJoYW5kc2hha2VDb2RlIjoiMTAxNjc5OTc0LVRYbFhaV0pRY205cVgyUmljZyIsIm9yZ2FuaXphdGlvbklEIjoiMTAxNjc5OTc0IiwiY2hlY2tDb2RlIjotNDEzNDcxMDQ3fQ==';
