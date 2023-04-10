@@ -68,6 +68,8 @@ async function showScaner() {
 
 // метод принимает расшифрованный QR или штрих-код
 function scanerResult(code) {
+  window.Telegram.WebApp.closeScanQrPopup();
+
   if (!code || (lastCode && lastCode === code)) {
     return;
   }
