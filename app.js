@@ -4,9 +4,9 @@ const urlParams = new URLSearchParams(window.location.search);
 const channel = urlParams.get('channel');
 const phone = urlParams.get('phone');
 
-if (channel === 'telegram') {
+// if (channel === 'telegram') {
   window.Telegram.WebApp.expand();
-}
+// }
 
 let scanerObj, lastCode;
 
