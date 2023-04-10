@@ -69,12 +69,13 @@ async function showScaner() {
 // метод принимает расшифрованный QR или штрих-код
 function scanerResult(code) {
   window.Telegram.WebApp.closeScanQrPopup();
-
+  window.console.log({code})
   if (!code.data || (lastCode && lastCode === code.data)) {
     return;
   }
 
-  window.Telegram.WebApp.showAlert("QR успішно відскановано ✅\n Перевіряємо інформацію ⏳");
+  // window.Telegram.WebApp.showAlert("QR успішно відскановано ✅\n Перевіряємо інформацію ⏳");
+  window.Telegram.WebApp.showAlert(code);
 
   // alert('QR успішно відскановано ✅\n Перевіряємо інформацію ⏳');
   // lastCode = code.data;
@@ -121,7 +122,7 @@ function scanerResult(code) {
     // редирект
     // setTimeout(redirect, 500);
 
-  setTimeout(redirect, 500);
+  // setTimeout(redirect, 500);
 
   return;
 }
