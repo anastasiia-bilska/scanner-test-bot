@@ -122,7 +122,7 @@ function scanerResult(code) {
     // редирект
     // setTimeout(redirect, 500);
 
-  // setTimeout(redirect, 500);
+  setTimeout(redirect, 500);
 
   return;
 }
