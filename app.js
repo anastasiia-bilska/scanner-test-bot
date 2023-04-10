@@ -17,7 +17,7 @@ async function showScaner() {
 
   try {
     document.getElementById('loader-wrapper').classList.remove('hide');
-    window.Telegram.WebApp.showScanQrPopup([{text: 'наведіть на центр ек'}], () => true);
+    window.Telegram.WebApp.showScanQrPopup({text: '911'}, () => true);
     Telegram.WebApp.onEvent('qrTextReceived', scanerResult);
     // if (scanerObj && scanerObj.getState() === Html5QrcodeScannerState.PAUSED) {
     //   scanerObj.resume();
