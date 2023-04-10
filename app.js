@@ -24,7 +24,7 @@ async function showScaner() {
 
     // if (channel === 'telegram') {
       window.Telegram.WebApp.showScanQrPopup({
-        text: "Аптека 9-1-1 дуже вдячна за ваш труд!❤️",
+        text: "Аптека 9-1-1 дуже вдячна за вашу працю!❤️",
       });
       window.Telegram.WebApp.onEvent('qrTextReceived', scanerResult);
     // } else {
