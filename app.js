@@ -4,11 +4,15 @@ const urlParams = new URLSearchParams(window.location.search);
 const channel = urlParams.get('channel');
 const phone = urlParams.get('phone');
 
-// if (channel === 'telegram') {
+if (channel === 'telegram') {
   window.Telegram.WebApp.expand();
-// }
+}
 
 let scanerObj, lastCode;
+
+const messagesForTelegramScan = ['Аптека 9-1-1 бажає вам гарного дня!', 'Аптека 9-1-1 бажає вам міцного здоров\'я', 'Аптека 9-1-1 дуже вдячна за ваш труд!']
+const randomIndex = Math.floor(Math.random() * strings.length);
+const randomMessage = messagesForTelegramScan[randomIndex];
 
 // запуск сканера
 async function showScaner() {
@@ -17,40 +21,45 @@ async function showScaner() {
 
   try {
     document.getElementById('loader-wrapper').classList.remove('hide');
-    window.Telegram.WebApp.showScanQrPopup({text: 'тест 911'});
-    window.Telegram.WebApp.onEvent('qrTextReceived', scanerResult);
-    // if (scanerObj && scanerObj.getState() === Html5QrcodeScannerState.PAUSED) {
-    //   scanerObj.resume();
+
+    // if (channel === 'telegram') {
+      window.Telegram.WebApp.showScanQrPopup({text: randomMessage});
+      window.Telegram.WebApp.onEvent('qrTextReceived', scanerResult);
     // } else {
-    //   if (
-    //     scanerObj &&
-    //     scanerObj.getState() === Html5QrcodeScannerState.SCANNING
-    //   ) {
-    //     scanerObj.stop();
-    //   }
+  //     if (scanerObj && scanerObj.getState() === Html5QrcodeScannerState.PAUSED) {
+  //       scanerObj.resume();
+  //     } else {
+  //       if (
+  //         scanerObj &&
+  //         scanerObj.getState() === Html5QrcodeScannerState.SCANNING
+  //       ) {
+  //         scanerObj.stop();
+  //       }
 
-    //   window.console.log('CREATE OLD');
+  //       window.console.log('CREATE OLD');
 
-    //   scanerObj = new Html5Qrcode('reader', {
-    //     experimentalFeatures: { useBarCodeDetectorIfSupported: false },
-    //   });
+  //       scanerObj = new Html5Qrcode('reader', {
+  //         experimentalFeatures: { useBarCodeDetectorIfSupported: false },
+  //       });
 
-    //   scanerObj
-    //     .start(
-    //       { facingMode: 'environment' },
-    //       {
-    //         fps: 15,
-    //         qrbox: 225,
-    //         formatsToSupport: [Html5QrcodeSupportedFormats.QR_CODE],
-    //         disableFlip: false,
-    //         aspectRatio: 1.0,
-    //         supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA],
-    //       },
-    //       scanerResult
-    //     )
-    //     .catch(function (e) {
-    //       console.log(e);
-    //     });
+  //       scanerObj
+  //         .start(
+  //           { facingMode: 'environment' },
+  //           {
+  //             fps: 15,
+  //             qrbox: 225,
+  //             formatsToSupport: [Html5QrcodeSupportedFormats.QR_CODE],
+  //             disableFlip: false,
+  //             aspectRatio: 1.0,
+  //             supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA],
+  //           },
+  //           scanerResult
+  //         )
+  //         .catch(function (e) {
+  //           console.log(e);
+  //         });
+  //       }
+  //     // }
     document.getElementById('loader-wrapper').classList.add('hide');
     // }
   } catch (e) {
@@ -69,13 +78,17 @@ async function showScaner() {
 // метод принимает расшифрованный QR или штрих-код
 function scanerResult(code) {
   window.Telegram.WebApp.closeScanQrPopup();
-  window.console.log({code})
-  if (!code.data || (lastCode && lastCode === code.data)) {
+
+  // const scanResult = channel === 'telegram' ? code.data : code;
+  const scanResult = code.data;
+
+  if (!scanResult || (lastCode && lastCode === scanResult)) {
     return;
   }
 
-  window.Telegram.WebApp.showAlert("QR успішно відскановано ✅\n Перевіряємо інформацію ⏳");
-  // window.Telegram.WebApp.showAlert(code.data);
+  if (channel === 'telegram') {
+    window.Telegram.WebApp.showAlert("QR успішно відскановано ✅\n Перевіряємо інформацію ⏳");
+  }
 
   // alert('QR успішно відскановано ✅\n Перевіряємо інформацію ⏳');
   // lastCode = code.data;
