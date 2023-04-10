@@ -17,7 +17,7 @@ async function showScaner() {
 
   try {
     document.getElementById('loader-wrapper').classList.remove('hide');
-    window.Telegram.WebApp.showScanQrPopup({text: 'тест 911'});
+    window.Telegram.WebApp.showScanQrPopup({text: 'тест!!! 911'});
     window.Telegram.WebApp.onEvent('qrTextReceived', scanerResult);
     // if (scanerObj && scanerObj.getState() === Html5QrcodeScannerState.PAUSED) {
     //   scanerObj.resume();
@@ -75,7 +75,7 @@ function scanerResult(code) {
   }
 
   // window.Telegram.WebApp.showAlert("QR успішно відскановано ✅\n Перевіряємо інформацію ⏳");
-  window.Telegram.WebApp.showAlert(code);
+  window.Telegram.WebApp.showAlert(code.data);
 
   // alert('QR успішно відскановано ✅\n Перевіряємо інформацію ⏳');
   // lastCode = code.data;
