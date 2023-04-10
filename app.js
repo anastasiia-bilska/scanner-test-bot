@@ -6,7 +6,7 @@ const phone = urlParams.get('phone');
 
 // if (channel === 'telegram') {
   window.Telegram.WebApp.expand();
-  window.Telegram.WebApp.colorScheme();
+  // window.Telegram.WebApp.colorScheme('light');
 // }
 
 let scanerObj, lastCode;
