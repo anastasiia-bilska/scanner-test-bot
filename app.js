@@ -74,8 +74,8 @@ function scanerResult(code) {
     return;
   }
 
-  // window.Telegram.WebApp.showAlert("QR успішно відскановано ✅\n Перевіряємо інформацію ⏳");
-  window.Telegram.WebApp.showAlert(code.data);
+  window.Telegram.WebApp.showAlert("QR успішно відскановано ✅\n Перевіряємо інформацію ⏳");
+  // window.Telegram.WebApp.showAlert(code.data);
 
   // alert('QR успішно відскановано ✅\n Перевіряємо інформацію ⏳');
   // lastCode = code.data;
