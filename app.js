@@ -17,8 +17,8 @@ async function showScaner() {
 
   try {
     document.getElementById('loader-wrapper').classList.remove('hide');
-    window.Telegram.WebApp.showScanQrPopup({text: 'наведіть на центр екрана'}, scanerResult);
-
+    window.Telegram.WebApp.showScanQrPopup({text: 'наведіть на центр екрана'}, true);
+    Telegram.WebApp.onEvent('qrTextReceived', scanerResult(data));
     // if (scanerObj && scanerObj.getState() === Html5QrcodeScannerState.PAUSED) {
     //   scanerObj.resume();
     // } else {
