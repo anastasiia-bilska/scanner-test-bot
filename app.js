@@ -23,7 +23,9 @@ async function showScaner() {
     document.getElementById('loader-wrapper').classList.remove('hide');
 
     // if (channel === 'telegram') {
-      window.Telegram.WebApp.showScanQrPopup({text: randomMessage});
+      window.Telegram.WebApp.showScanQrPopup({
+        text: "Аптека 9-1-1 дуже вдячна за ваш труд!❤️",
+      });
       window.Telegram.WebApp.onEvent('qrTextReceived', scanerResult);
     // } else {
   //     if (scanerObj && scanerObj.getState() === Html5QrcodeScannerState.PAUSED) {
