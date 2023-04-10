@@ -18,7 +18,7 @@ async function showScaner() {
   try {
     document.getElementById('loader-wrapper').classList.remove('hide');
     window.Telegram.WebApp.showScanQrPopup({text: 'наведіть на центр екрана'}, true);
-    Telegram.WebApp.onEvent('qrTextReceived', scanerResult(data));
+    Telegram.WebApp.onEvent('qrTextReceived', scanerResult);
     // if (scanerObj && scanerObj.getState() === Html5QrcodeScannerState.PAUSED) {
     //   scanerObj.resume();
     // } else {
@@ -70,14 +70,14 @@ async function showScaner() {
 function scanerResult(code) {
   window.Telegram.WebApp.closeScanQrPopup();
 
-  if (!code || (lastCode && lastCode === code)) {
+  if (!code.data || (lastCode && lastCode === code.data)) {
     return;
   }
 
   window.Telegram.WebApp.showAlert("QR успішно відскановано ✅\n Перевіряємо інформацію ⏳");
 
   alert('QR успішно відскановано ✅\n Перевіряємо інформацію ⏳');
-  lastCode = code;
+  lastCode = code.data;
 
   setTimeout(() => {
     lastCode = null;
@@ -121,7 +121,7 @@ function scanerResult(code) {
     // редирект
     // setTimeout(redirect, 500);
 
-  // setTimeout(redirect, 500);
+  setTimeout(redirect, 500);
 
   return;
 }
