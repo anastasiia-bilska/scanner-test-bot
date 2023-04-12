@@ -20,7 +20,7 @@ async function showScaner() {
   lastCode = null;
 
   try {
-    document.getElementById('loader-wrapper').classList.remove('hide');
+    // document.getElementById('loader-wrapper').classList.remove('hide');
 
     // if (channel === 'telegram') {
     //   window.Telegram.WebApp.showScanQrPopup({
