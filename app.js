@@ -23,45 +23,45 @@ async function showScaner() {
     document.getElementById('loader-wrapper').classList.remove('hide');
 
     // if (channel === 'telegram') {
-      window.Telegram.WebApp.showScanQrPopup({
-        text: "Помістіть QR-код у центр екрану 🎯",
-      });
-      window.Telegram.WebApp.onEvent('qrTextReceived', scanerResult);
+    //   window.Telegram.WebApp.showScanQrPopup({
+    //     text: "Помістіть QR-код у центр екрану 🎯",
+    //   });
+    //   window.Telegram.WebApp.onEvent('qrTextReceived', scanerResult);
     // } else {
-  //     if (scanerObj && scanerObj.getState() === Html5QrcodeScannerState.PAUSED) {
-  //       scanerObj.resume();
-  //     } else {
-  //       if (
-  //         scanerObj &&
-  //         scanerObj.getState() === Html5QrcodeScannerState.SCANNING
-  //       ) {
-  //         scanerObj.stop();
-  //       }
+      if (scanerObj && scanerObj.getState() === Html5QrcodeScannerState.PAUSED) {
+        scanerObj.resume();
+      } else {
+        if (
+          scanerObj &&
+          scanerObj.getState() === Html5QrcodeScannerState.SCANNING
+        ) {
+          scanerObj.stop();
+        }
 
-  //       window.console.log('CREATE OLD');
+        window.console.log('CREATE OLD');
 
-  //       scanerObj = new Html5Qrcode('reader', {
-  //         experimentalFeatures: { useBarCodeDetectorIfSupported: false },
-  //       });
+        scanerObj = new Html5Qrcode('reader', {
+          experimentalFeatures: { useBarCodeDetectorIfSupported: false },
+        });
 
-  //       scanerObj
-  //         .start(
-  //           { facingMode: 'environment' },
-  //           {
-  //             fps: 15,
-  //             qrbox: 225,
-  //             formatsToSupport: [Html5QrcodeSupportedFormats.QR_CODE],
-  //             disableFlip: false,
-  //             aspectRatio: 1.0,
-  //             supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA],
-  //           },
-  //           scanerResult
-  //         )
-  //         .catch(function (e) {
-  //           console.log(e);
-  //         });
-  //       }
-  //     // }
+        scanerObj
+          .start(
+            { facingMode: 'environment' },
+            {
+              fps: 15,
+              qrbox: 225,
+              formatsToSupport: [Html5QrcodeSupportedFormats.QR_CODE],
+              disableFlip: false,
+              aspectRatio: 1.0,
+              supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA],
+            },
+            scanerResult
+          )
+          .catch(function (e) {
+            console.log(e);
+          });
+        }
+      // }
     document.getElementById('loader-wrapper').classList.add('hide');
     // }
   } catch (e) {
