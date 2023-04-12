@@ -64,7 +64,7 @@ async function showScaner() {
         }
 
         document.getElementById("loader-wrapper").classList.add("hide");
-      }, 1500)
+      }, 2000)
       // }
     // document.getElementById('loader-wrapper').classList.add('hide');
     // }
