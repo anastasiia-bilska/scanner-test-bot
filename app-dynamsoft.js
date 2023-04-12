@@ -100,7 +100,7 @@ async function showScaner() {
     alert("Щось пішло не так... Повертаємось на попередній сканер");
 
     // setTimeout(() => {
-    //   window.location.replace("index.html");
+      window.location.replace("index.html");
     // }, 500);
   }
 }
