@@ -99,9 +99,9 @@ async function showScaner() {
 
     alert("Щось пішло не так... Повертаємось на попередній сканер");
 
-    setTimeout(() => {
-      window.location.replace("index.html");
-    }, 1000);
+    // setTimeout(() => {
+    //   window.location.replace("index.html");
+    // }, 500);
   }
 }
 
