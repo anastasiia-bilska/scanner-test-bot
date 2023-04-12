@@ -39,32 +39,34 @@ async function showScaner() {
           scanerObj.stop();
         }
 
-        window.console.log('CREATE OLD');
+        window.console.log("CREATE OLD");
 
-        scanerObj = new Html5Qrcode('reader', {
+        scanerObj = new Html5Qrcode("reader", {
           experimentalFeatures: { useBarCodeDetectorIfSupported: false },
         });
 
         // setTimeout(() => {
-          scanerObj
-            .start(
-              { facingMode: "environment" },
-              {
-                fps: 15,
-                qrbox: 225,
-                formatsToSupport: [Html5QrcodeSupportedFormats.QR_CODE],
-                disableFlip: false,
-                aspectRatio: 1.0,
-                supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA],
-              },
-              scanerResult
-            )
-            .catch(function (e) {
-              console.log(e);
-            });
+        scanerObj
+          .start(
+            { facingMode: "environment" },
+            {
+              fps: 15,
+              qrbox: 225,
+              formatsToSupport: [Html5QrcodeSupportedFormats.QR_CODE],
+              disableFlip: false,
+              aspectRatio: 1.0,
+              supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA],
+            },
+            scanerResult
+          )
+          .catch(function (e) {
+            console.log(e);
+          });
+          
+        setTimeout(() => {
           document.getElementById("loader-wrapper").classList.add("hide");
-        // }, 3000);
-        }
+        }, 0);
+      }
 
       // }
     // document.getElementById('loader-wrapper').classList.add('hide');
