@@ -65,7 +65,7 @@ async function showScaner() {
           
         setTimeout(() => {
           document.getElementById("loader-wrapper").classList.add("hide");
-        }, 0);
+        }, 2500);
       }
 
       // }
