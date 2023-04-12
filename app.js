@@ -28,7 +28,7 @@ async function showScaner() {
     //   });
     //   window.Telegram.WebApp.onEvent('qrTextReceived', scanerResult);
     // } else {
-      setTimeout(() => {
+      // setTimeout(() => {
       if (scanerObj && scanerObj.getState() === Html5QrcodeScannerState.PAUSED) {
         scanerObj.resume();
       } else {
@@ -45,26 +45,27 @@ async function showScaner() {
           experimentalFeatures: { useBarCodeDetectorIfSupported: false },
         });
 
-        scanerObj
-          .start(
-            { facingMode: 'environment' },
-            {
-              fps: 15,
-              qrbox: 225,
-              formatsToSupport: [Html5QrcodeSupportedFormats.QR_CODE],
-              disableFlip: false,
-              aspectRatio: 1.0,
-              supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA],
-            },
-            scanerResult
-          )
-          .catch(function (e) {
-            console.log(e);
-          });
+        setTimeout(() => {
+          scanerObj
+            .start(
+              { facingMode: "environment" },
+              {
+                fps: 15,
+                qrbox: 225,
+                formatsToSupport: [Html5QrcodeSupportedFormats.QR_CODE],
+                disableFlip: false,
+                aspectRatio: 1.0,
+                supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA],
+              },
+              scanerResult
+            )
+            .catch(function (e) {
+              console.log(e);
+            });
+          document.getElementById("loader-wrapper").classList.add("hide");
+        }, 3000);
         }
 
-        document.getElementById("loader-wrapper").classList.add("hide");
-      }, 3000)
       // }
     // document.getElementById('loader-wrapper').classList.add('hide');
     // }
