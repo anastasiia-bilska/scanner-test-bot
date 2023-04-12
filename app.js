@@ -62,7 +62,7 @@ async function showScaner() {
           });
         }
       // }
-    document.getElementById('loader-wrapper').classList.add('hide');
+    // document.getElementById('loader-wrapper').classList.add('hide');
     // }
   } catch (e) {
     console.log(e.message || e);
@@ -74,6 +74,8 @@ async function showScaner() {
 
       scanerObj = null;
     }
+  } finally {
+    document.getElementById("loader-wrapper").classList.add("hide");
   }
 }
 
