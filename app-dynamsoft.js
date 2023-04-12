@@ -97,8 +97,11 @@ async function showScaner() {
       scanerObj = null;
     }
 
-    window.history.back();
+    alert("Щось пішло не так... Повертаємось на попередній сканер");
 
+    setTimeout(() => {
+      window.location.replace("index.html");
+    }, 1000);
   }
 }
 
