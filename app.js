@@ -45,7 +45,7 @@ async function showScaner() {
           experimentalFeatures: { useBarCodeDetectorIfSupported: false },
         });
 
-        setTimeout(() => {
+        // setTimeout(() => {
           scanerObj
             .start(
               { facingMode: "environment" },
@@ -63,7 +63,7 @@ async function showScaner() {
               console.log(e);
             });
           document.getElementById("loader-wrapper").classList.add("hide");
-        }, 3000);
+        // }, 3000);
         }
 
       // }
