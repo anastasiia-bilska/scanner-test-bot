@@ -28,6 +28,7 @@ async function showScaner() {
     //   });
     //   window.Telegram.WebApp.onEvent('qrTextReceived', scanerResult);
     // } else {
+      setTimeout(() => {
       if (scanerObj && scanerObj.getState() === Html5QrcodeScannerState.PAUSED) {
         scanerObj.resume();
       } else {
@@ -61,6 +62,9 @@ async function showScaner() {
             console.log(e);
           });
         }
+
+        document.getElementById("loader-wrapper").classList.add("hide");
+      }, 1000)
       // }
     // document.getElementById('loader-wrapper').classList.add('hide');
     // }
@@ -75,7 +79,7 @@ async function showScaner() {
       scanerObj = null;
     }
   } finally {
-    document.getElementById("loader-wrapper").classList.add("hide");
+    // document.getElementById("loader-wrapper").classList.add("hide");
   }
 }
 
