@@ -14,6 +14,10 @@ const messagesForTelegramScan = ['Аптека 9-1-1 бажає вам гарн�
 const randomIndex = Math.floor(Math.random() * strings.length);
 const randomMessage = messagesForTelegramScan[randomIndex];
 
+function openTgLink() {
+  openTelegramLink("index-dynamsoft.html");	
+}
+
 // запуск сканера
 async function showScaner() {
   console.log('START OLD');
