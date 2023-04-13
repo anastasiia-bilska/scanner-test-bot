@@ -10,14 +10,6 @@ window.Telegram.WebApp.expand();
 
 let scanerObj, lastCode;
 
-const messagesForTelegramScan = [
-  "Аптека 9-1-1 бажає вам гарного дня!",
-  "Аптека 9-1-1 бажає вам міцного здоров'я",
-  "Аптека 9-1-1 дуже вдячна за ваш труд!",
-];
-const randomIndex = Math.floor(Math.random() * strings.length);
-const randomMessage = messagesForTelegramScan[randomIndex];
-
 function toggleScanner() {
   document.getElementById("iframe").classList.remove("hide");
   document.getElementById("scanner").classList.add("hidden");
