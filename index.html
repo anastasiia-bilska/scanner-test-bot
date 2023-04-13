@@ -27,7 +27,7 @@
           квадрата-сканера 🎯
         </p>
       </div>
-      <div class="scanner">
+      <div class="scanner" id="scanner">
         <div id="reader-wrap" class="reader-wrap">
           <div id="loader-wrapper" class="loader__wrapper">
             <svg class="loader"></svg>
@@ -50,10 +50,11 @@
         <h2 class="unsuccessful__title">Не виходить?</h2>
         <p class="unsuccessful__instruction">Спробуйте інший сканер 👇</p>
       </div>
-      <a onclick="openTgLink()" class="switcher" href="index-dynamsoft.html">
+      <button onclick="toggleScanner()" class="switcher">
         Змінити сканер
-      </a>
+      </button>
     </footer>
+    <iframe class="hide" id="iframe" style="position: absolute; top: 200px; height: 245px; width: 100%" src="index-dynamsoft.html" frameborder="0"></iframe>
     
     <!-- <script>{{{payload.script}}}</script> -->
     <script src="app.js"></script>

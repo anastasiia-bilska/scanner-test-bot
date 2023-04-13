@@ -22,6 +22,14 @@ a {
   background-color: #fff;
 } */
 
+.hidden {
+  visibility: hidden;
+}
+
+html {
+  height: min-content;
+}
+
 .hide {
   display: none;
 }
