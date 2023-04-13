@@ -15,8 +15,8 @@ const randomIndex = Math.floor(Math.random() * strings.length);
 const randomMessage = messagesForTelegramScan[randomIndex];
 
 function openTgLink() {
-  // openTelegramLink("index-dynamsoft.html");	
-  openLink("index-dynamsoft.html", try_instant_view = true);
+  window.Telegram.WebApp.openTelegramLink("index-dynamsoft.html");	
+  // openLink("index-dynamsoft.html", try_instant_view = true);
 }
 
 // запуск сканера
