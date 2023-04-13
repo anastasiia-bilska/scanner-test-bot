@@ -19,6 +19,8 @@ function toggleScanner() {
   // );
 }
 
+document.getElementById("switcher").addEventListener("click", toggleScanner);
+
 // запуск сканера
 async function showScaner() {
   console.log("START OLD");
