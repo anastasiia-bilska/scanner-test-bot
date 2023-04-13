@@ -1,0 +1,77 @@
+if (scanerCurrent === "old") {
+    console.log("START OLD");
+    lastCode = null;
+
+    try {
+      document.getElementById("loader-wrapper").classList.remove("hide");
+
+      // if (channel === 'telegram') {
+      //   window.Telegram.WebApp.showScanQrPopup({
+      //     text: "Помістіть QR-код у центр екрану 🎯",
+      //   });
+      //   window.Telegram.WebApp.onEvent('qrTextReceived', scanerResult);
+      // } else {
+      setTimeout(() => {
+        if (
+          scanerOldObj &&
+          scanerOldObj.getState() === Html5QrcodeScannerState.PAUSED
+        ) {
+          scanerOldObj.resume();
+        } else {
+          if (
+            scanerOldObj &&
+            scanerOldObj.getState() === Html5QrcodeScannerState.SCANNING
+          ) {
+            scanerOldObj.stop();
+          }
+
+          window.console.log("CREATE OLD");
+
+          scanerOldObj = new Html5Qrcode("reader", {
+            experimentalFeatures: { useBarCodeDetectorIfSupported: false },
+          });
+
+          // setTimeout(() => {
+          scanerOldObj
+            .start(
+              { facingMode: "environment" },
+              {
+                fps: 15,
+                qrbox: 225,
+                formatsToSupport: [Html5QrcodeSupportedFormats.QR_CODE],
+                disableFlip: false,
+                aspectRatio: 1.0,
+                supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA],
+              },
+              scanerResult
+            )
+            .catch(function (e) {
+              console.log(e);
+            });
+
+          // setTimeout(() => {
+        }
+        document.getElementById("loader-wrapper").classList.add("hide");
+      }, 1500);
+
+      // }
+      // document.getElementById('loader-wrapper').classList.add('hide');
+      // }
+    } catch (e) {
+      console.log(e.message || e);
+
+      if (scanerOldObj) {
+        if (scanerOldObj.getState() === Html5QrcodeScannerState.SCANNING) {
+          scanerOldObj.stop();
+          scanerOldObj = null;
+        }
+
+        if (!isOnce) {
+          alert("Щось пішло не так! Змінюю сканер...");
+          scanerCurrent = "new";
+          showScaner(true);
+        }
+      }
+    } finally {
+      // document.getElementById("loader-wrapper").classList.add("hide");
+    }

@@ -5,8 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Сканер штрих кодів | Аптека 9-1-1</title>
+    <link rel="stylesheet" href="style-dynamsoft.css">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.4/html5-qrcode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dynamsoft-javascript-barcode@9.6.2/dist/dbr.js"></script>
     <link rel="stylesheet" href="style.css">
     <!-- <style>{{{payload.style}}}</style> -->
   </head>
@@ -27,7 +29,7 @@
           квадрата-сканера 🎯
         </p>
       </div>
-      <div class="scanner" id="scanner">
+      <div class="scanner hide" id="scanner-HTML5">
         <div id="reader-wrap" class="reader-wrap">
           <div id="loader-wrapper" class="loader__wrapper">
             <svg class="loader"></svg>
@@ -43,6 +45,22 @@
           у вашому браузері!
         </p>
       </div>
+
+      <div class="scanner hide" id="scanner-dynamsoft">
+        <div id="app" class="app">
+          <div id="barcode-scaner" class="barcode-scaner">
+            <div id="dce-bg-loading" class="dce-bg-loading">
+              <svg class="loader"></svg>
+            </div>
+
+            <div class="dce-scanarea">
+              <div class="dce-scanlight"></div>
+            </div>
+
+            <div id="dce-video-container" class="dce-video-container"></div>
+          </div>
+        </div>
+      </div>
     </main>
 
     <footer>
@@ -50,12 +68,10 @@
         <h2 class="unsuccessful__title">Не виходить?</h2>
         <p class="unsuccessful__instruction">Спробуйте інший сканер 👇</p>
       </div>
-      <button id="switcher" class="switcher">
+      <button onclick="changeScaner()" id="switcher" class="switcher">
         Змінити сканер
       </button>
     </footer>
-    <iframe class="hide" id="iframe" style="position: absolute; top: 200px; height: 245px; width: 100%" src="index-dynamsoft.html" frameborder="0"></iframe>
-    
     <!-- <script>{{{payload.script}}}</script> -->
     <script src="app.js"></script>
   </body>
