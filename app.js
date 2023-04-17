@@ -211,8 +211,8 @@ function sendDataToApi (code) {
   //   xhr.send(
   //     JSON.stringify({
   //       text: code,
-  //       channel: {{{payload.channel}}},
-  //       phone: {{{payload.phone}}},
+  //       channel: channel,
+  //       phone: phone,
   //       user: window.Telegram.WebApp.initDataUnsafe.user,
   //     })
   //   );
@@ -220,8 +220,8 @@ function sendDataToApi (code) {
   //   xhr.send(
   //     JSON.stringify({
   //       text: code,
-  //       channel: {{{payload.channel}}},
-  //       phone: {{{payload.phone}}},
+  //       channel: channel,
+  //       phone: phone,
   //     })
   //   );
   // }
@@ -236,9 +236,6 @@ function sendDataToApi (code) {
   //     'phone': `{{{payload.phone}}}`,
   //     'user': window.Telegram.WebApp.initDataUnsafe.user
   // }));
-
-  // редирект
-  // setTimeout(redirect, 500);
 
   setTimeout(redirect, 500);
 
