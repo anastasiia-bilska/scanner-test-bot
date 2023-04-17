@@ -248,4 +248,6 @@ function redirect() {
   } else if (channel === 'viber') {
     window.location.replace(decodeURIComponent('{{payload.redirectLink}}'));
   }
+
+  window.Telegram.WebApp.close();
 }
