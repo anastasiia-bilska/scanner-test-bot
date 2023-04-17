@@ -4,15 +4,15 @@ const urlParams = new URLSearchParams(window.location.search);
 const channel = urlParams.get("channel");
 const phone = urlParams.get("phone");
 
-// if (channel === "telegram") {
+if (channel === "telegram") {
   window.Telegram.WebApp.expand();
-// }
+}
 
 let scanerCurrent = "old";
 let scanerNewObj, scanerOldObj, lastCode;
 
 // запуск сканера
-async function showScaner() {
+async function showScaner(isOnce = false) {
   //запуск старого сканера
   if (scanerCurrent === "old") {
     console.log("START OLD");
@@ -22,6 +22,12 @@ async function showScaner() {
     try {
       document.getElementById("loader-wrapper").classList.remove("hide");
 
+      // if (channel === 'telegram') {
+      //   window.Telegram.WebApp.showScanQrPopup({
+      //     text: 'Помістіть QR-код у центр екрану 🎯',
+      //   });
+      //   window.Telegram.WebApp.onEvent('qrTextReceived', scanerResult);
+      // } else {
       setTimeout(() => {
         if (
           scanerOldObj &&
@@ -42,6 +48,7 @@ async function showScaner() {
             experimentalFeatures: { useBarCodeDetectorIfSupported: false },
           });
 
+          // setTimeout(() => {
           scanerOldObj
             .start(
               { facingMode: "environment" },
@@ -58,10 +65,16 @@ async function showScaner() {
             .catch(function (e) {
               console.log(e);
             });
+
+          // setTimeout(() => {
         }
         document.getElementById("loader-wrapper").classList.add("hide");
         document.getElementById("reader").classList.remove("hide");
       }, 1500);
+
+      // }
+      // document.getElementById('loader-wrapper').classList.add('hide');
+      // }
     } catch (e) {
       console.log(e.message || e);
 
@@ -71,9 +84,11 @@ async function showScaner() {
           scanerOldObj = null;
         }
 
-        alert("Щось пішло не так! Змінюю сканер...");
-        scanerCurrent = "new";
-        showScaner();
+        if (!isOnce) {
+          alert("Щось пішло не так! Змінюю сканер...");
+          scanerCurrent = "new";
+          showScaner(true);
+        }
       }
     }
     //запуск нового сканера
@@ -92,7 +107,7 @@ async function showScaner() {
         document.getElementById("dce-bg-loading").classList.add("hide");
       } else {
         // if ( !Dynamsoft.DBR.BarcodeReader.license )
-        // Dynamsoft.DBR.BarcodeReader.license = scanerNewLicense;
+        //     Dynamsoft.DBR.BarcodeReader.license = scanerNewLicense;
         scanerNewObj = await Dynamsoft.DBR.BarcodeScanner.createInstance();
 
         let settings = await scanerNewObj.getRuntimeSettings();
@@ -133,11 +148,12 @@ async function showScaner() {
           document.getElementById("barcode-scaner")
         );
         await scanerNewObj.setResolution(400, 400);
-
+        // scanerNewObj.show();
         document.getElementById("dce-video-container").style.display = "block";
-
-        await scanerNewObj.show();
-        document.getElementById("dce-bg-loading").classList.add("hide");
+        setTimeout(() => {
+          scanerNewObj.show();
+          document.getElementById("dce-bg-loading").classList.add("hide");
+        }, 1000);
       }
     } catch (e) {
       let err;
@@ -155,9 +171,11 @@ async function showScaner() {
         scanerNewObj = null;
       }
 
-      alert("Щось пішло не так... Повертаємось на попередній сканер");
-      scanerCurrent = "old";
-      showScaner();
+      if (!isOnce) {
+        alert("Щось пішло не так... Повертаємось на попередній сканер");
+        scanerCurrent = "old";
+        showScaner(true);
+      }
     }
   }
 }
@@ -185,18 +203,12 @@ function scanerResult(code) {
 
   if (channel === "telegram") {
     window.Telegram.WebApp.showAlert(
-      "QR успішно відскановано ✅\n Перевіряємо інформацію ⏳",
-      sendDataToApi(code)
+      "QR успішно відскановано ✅\n Перевіряємо інформацію ⏳"
     );
   } else {
     alert("QR успішно відскановано ✅\n Перевіряємо інформацію ⏳");
-    sendDataToApi(code);
   }
 
-  return;
-}
-
-function sendDataToApi(code) {
   lastCode = code;
 
   setTimeout(() => {
@@ -204,28 +216,28 @@ function sendDataToApi(code) {
   }, 1500);
 
   // отправляем данные на api - новий
-  //  let xhr = new XMLHttpRequest();
-  //   xhr.open('POST', {{{msg.serverUrl}}}'/QRres', true);
-  //   xhr.setRequestHeader('Content-Type', 'application/json');
+  // let xhr = new XMLHttpRequest();
+  // xhr.open('POST', {{{msg.serverUrl}}}'/QRres', true);
+  // xhr.setRequestHeader('Content-Type', 'application/json');
 
-  //   if (channel === 'telegram') {
-  //     xhr.send(
-  //       JSON.stringify({
-  //         text: code,
-  //         channel: {{{payload.channel}}},
-  //         phone: {{{payload.phone}}},
-  //         user: window.Telegram.WebApp.initDataUnsafe.user,
-  //       })
-  //     );
-  //   } else if (channel === 'viber') {
-  //     xhr.send(
-  //       JSON.stringify({
-  //         text: code,
-  //         channel: {{{payload.channel}}},
-  //         phone: {{{payload.phone}}},
-  //       })
-  //     );
-  //   }
+  // if (channel === 'telegram') {
+  //   xhr.send(
+  //     JSON.stringify({
+  //       text: code,
+  //       channel: `{{{payload.channel}}}`,
+  //       phone: `{{{payload.phone}}}`,
+  //       user: window.Telegram.WebApp.initDataUnsafe.user,
+  //     })
+  //   );
+  // } else if (channel === 'viber') {
+  //   xhr.send(
+  //     JSON.stringify({
+  //       text: code,
+  //       channel: `{{{payload.channel}}}`,
+  //       phone: `{{{payload.phone}}}`,
+  //     })
+  //   );
+  // }
 
   // отправляем данные на api - початковий
   // let xhr = new XMLHttpRequest();
@@ -242,11 +254,12 @@ function sendDataToApi(code) {
   // setTimeout(redirect, 500);
 
   setTimeout(redirect, 500);
+
+  return;
 }
 
 function redirect() {
   if (channel === "telegram") {
-    lastCode = null;
     window.Telegram.WebApp.close();
   } else if (channel === "viber") {
     window.location.replace(decodeURIComponent("{{payload.redirectLink}}"));
