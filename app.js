@@ -238,15 +238,17 @@ function sendDataToApi(code) {
   //     'user': window.Telegram.WebApp.initDataUnsafe.user
   // }));
 
+  // редирект
+  // setTimeout(redirect, 500);
+
   setTimeout(redirect, 500);
 }
 
 function redirect() {
   if (channel === 'telegram') {
+    lastCode = null;
     window.Telegram.WebApp.close();
   } else if (channel === 'viber') {
     window.location.replace(decodeURIComponent('{{payload.redirectLink}}'));
   }
-
-  window.Telegram.WebApp.close();
 }
