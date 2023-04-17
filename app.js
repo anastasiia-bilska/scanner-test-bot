@@ -198,7 +198,7 @@ function scanerResult(code) {
       {message: "QR успішно відскановано ✅\n Перевіряємо інформацію ⏳"},
     );
     window.Telegram.WebApp.onEvent("popupClosed", sendDataToApi(code));
-    sendDataToApi(code);
+    // sendDataToApi(code);
   }
 }
 
