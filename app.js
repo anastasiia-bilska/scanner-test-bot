@@ -22,12 +22,6 @@ async function showScaner(isOnce = false) {
     try {
       document.getElementById("loader-wrapper").classList.remove("hide");
 
-      // if (channel === 'telegram') {
-      //   window.Telegram.WebApp.showScanQrPopup({
-      //     text: 'Помістіть QR-код у центр екрану 🎯',
-      //   });
-      //   window.Telegram.WebApp.onEvent('qrTextReceived', scanerResult);
-      // } else {
       setTimeout(() => {
         if (
           scanerOldObj &&
@@ -48,7 +42,6 @@ async function showScaner(isOnce = false) {
             experimentalFeatures: { useBarCodeDetectorIfSupported: false },
           });
 
-          // setTimeout(() => {
           scanerOldObj
             .start(
               { facingMode: "environment" },
@@ -65,16 +58,11 @@ async function showScaner(isOnce = false) {
             .catch(function (e) {
               console.log(e);
             });
-
-          // setTimeout(() => {
         }
+
         document.getElementById("loader-wrapper").classList.add("hide");
         document.getElementById("reader").classList.remove("hide");
       }, 1500);
-
-      // }
-      // document.getElementById('loader-wrapper').classList.add('hide');
-      // }
     } catch (e) {
       console.log(e.message || e);
 
@@ -169,11 +157,9 @@ async function showScaner(isOnce = false) {
         scanerNewObj = null;
       }
 
-      
-        alert("Щось пішло не так... Повертаємось на попередній сканер");
-        scanerCurrent = "old";
-        showScaner(true);
-      
+      alert("Щось пішло не так... Повертаємось на попередній сканер");
+      scanerCurrent = "old";
+      showScaner(true);
     }
   }
 }
@@ -217,29 +203,28 @@ function sendDataToApi (code) {
     lastCode = null;
   }, 1500);
 
-  // отправляем данные на api - новий
-  // let xhr = new XMLHttpRequest();
-  // xhr.open('POST', {{{msg.serverUrl}}}'/QRres', true);
-  // xhr.setRequestHeader('Content-Type', 'application/json');
+let xhr = new XMLHttpRequest();
+  xhr.open('POST', {{{msg.serverUrl}}}'/QRres', true);
+  xhr.setRequestHeader('Content-Type', 'application/json');
 
-  // if (channel === 'telegram') {
-  //   xhr.send(
-  //     JSON.stringify({
-  //       text: code,
-  //       channel: `{{{payload.channel}}}`,
-  //       phone: `{{{payload.phone}}}`,
-  //       user: window.Telegram.WebApp.initDataUnsafe.user,
-  //     })
-  //   );
-  // } else if (channel === 'viber') {
-  //   xhr.send(
-  //     JSON.stringify({
-  //       text: code,
-  //       channel: `{{{payload.channel}}}`,
-  //       phone: `{{{payload.phone}}}`,
-  //     })
-  //   );
-  // }
+  if (channel === 'telegram') {
+    xhr.send(
+      JSON.stringify({
+        text: code,
+        channel: {{{payload.channel}}},
+        phone: {{{payload.phone}}},
+        user: window.Telegram.WebApp.initDataUnsafe.user,
+      })
+    );
+  } else if (channel === 'viber') {
+    xhr.send(
+      JSON.stringify({
+        text: code,
+        channel: {{{payload.channel}}},
+        phone: {{{payload.phone}}},
+      })
+    );
+  }
 
   // отправляем данные на api - початковий
   // let xhr = new XMLHttpRequest();
@@ -266,6 +251,4 @@ function redirect() {
   } else if (channel === "viber") {
     window.location.replace(decodeURIComponent("{{payload.redirectLink}}"));
   }
-
-  window.Telegram.WebApp.close();
 }
