@@ -140,11 +140,11 @@ async function showScaner(isOnce = false) {
           document.getElementById("barcode-scaner")
         );
         await scanerNewObj.setResolution(400, 400);
-        document.getElementById("dce-video-container").style.display = "block";
-        // setTimeout(() => {
+        
         await scanerNewObj.show();
         document.getElementById("dce-bg-loading").classList.add("hide");
-        // }, 1000);
+        
+        document.getElementById("dce-video-container").style.display = "block";
       }
     } catch (e) {
       let err;
