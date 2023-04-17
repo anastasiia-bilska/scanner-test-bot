@@ -5,7 +5,7 @@ const channel = urlParams.get('channel');
 const phone = urlParams.get('phone');
 
 if (channel === 'telegram') {
-  window.Telegram.WebApp.expand();
+window.Telegram.WebApp.expand();
 }
 
 let scanerCurrent = 'old';
@@ -133,7 +133,7 @@ async function showScaner() {
           document.getElementById('barcode-scaner')
         );
         await scanerNewObj.setResolution(400, 400);
-
+        
         document.getElementById('dce-video-container').style.display = 'block';
 
         await scanerNewObj.show();
@@ -185,12 +185,11 @@ function scanerResult(code) {
 
   if (channel === 'telegram') {
     window.Telegram.WebApp.showAlert(
-      'QR успішно відскановано ✅\n Перевіряємо інформацію ⏳',
-      sendDataToApi(code)
+      'QR успішно відскановано ✅\n Перевіряємо інформацію ⏳', sendDataToApi(code)
     );
   } else {
     alert('QR успішно відскановано ✅\n Перевіряємо інформацію ⏳');
-    sendDataToApi(code);
+    sendDataToApi(code)
   }
 
   return;
@@ -204,28 +203,28 @@ function sendDataToApi(code) {
   }, 1500);
 
   // отправляем данные на api - новий
-  //  let xhr = new XMLHttpRequest();
-  //   xhr.open('POST', {{{msg.serverUrl}}}'/QRres', true);
-  //   xhr.setRequestHeader('Content-Type', 'application/json');
+ let xhr = new XMLHttpRequest();
+  xhr.open('POST', {{{msg.serverUrl}}}'/QRres', true);
+  xhr.setRequestHeader('Content-Type', 'application/json');
 
-  //   if (channel === 'telegram') {
-  //     xhr.send(
-  //       JSON.stringify({
-  //         text: code,
-  //         channel: {{{payload.channel}}},
-  //         phone: {{{payload.phone}}},
-  //         user: window.Telegram.WebApp.initDataUnsafe.user,
-  //       })
-  //     );
-  //   } else if (channel === 'viber') {
-  //     xhr.send(
-  //       JSON.stringify({
-  //         text: code,
-  //         channel: {{{payload.channel}}},
-  //         phone: {{{payload.phone}}},
-  //       })
-  //     );
-  //   }
+  if (channel === 'telegram') {
+    xhr.send(
+      JSON.stringify({
+        text: code,
+        channel: {{{payload.channel}}},
+        phone: {{{payload.phone}}},
+        user: window.Telegram.WebApp.initDataUnsafe.user,
+      })
+    );
+  } else if (channel === 'viber') {
+    xhr.send(
+      JSON.stringify({
+        text: code,
+        channel: {{{payload.channel}}},
+        phone: {{{payload.phone}}},
+      })
+    );
+  }
 
   // отправляем данные на api - початковий
   // let xhr = new XMLHttpRequest();
