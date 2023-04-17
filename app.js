@@ -203,12 +203,16 @@ function scanerResult(code) {
 
   if (channel === "telegram") {
     window.Telegram.WebApp.showAlert(
-      "QR успішно відскановано ✅\n Перевіряємо інформацію ⏳"
+      "QR успішно відскановано ✅\n Перевіряємо інформацію ⏳",
+      sendDataToApi(code)
     );
   } else {
     alert("QR успішно відскановано ✅\n Перевіряємо інформацію ⏳");
+    sendDataToApi(code);
   }
+}
 
+function sendDataToApi (code) {
   lastCode = code;
 
   setTimeout(() => {
@@ -264,4 +268,6 @@ function redirect() {
   } else if (channel === "viber") {
     window.location.replace(decodeURIComponent("{{payload.redirectLink}}"));
   }
+
+  window.Telegram.WebApp.close();
 }
