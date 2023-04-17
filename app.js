@@ -5,7 +5,7 @@ const channel = urlParams.get("channel");
 const phone = urlParams.get("phone");
 
 // if (channel === "telegram") {
-  window.Telegram.WebApp.expand();
+window.Telegram.WebApp.expand();
 // }
 
 let scanerCurrent = "old";
@@ -78,11 +78,9 @@ async function showScaner(isOnce = false) {
           scanerOldObj = null;
         }
 
-        // if () {
-          alert("Щось пішло не так! Змінюю сканер...");
-          scanerCurrent = "new";
-          showScaner();
-        // }
+        alert("Щось пішло не так! Змінюю сканер...");
+        scanerCurrent = "new";
+        showScaner();
       }
     }
     //запуск нового сканера
@@ -101,7 +99,7 @@ async function showScaner(isOnce = false) {
         document.getElementById("dce-bg-loading").classList.add("hide");
       } else {
         // if ( !Dynamsoft.DBR.BarcodeReader.license )
-            // Dynamsoft.DBR.BarcodeReader.license = scanerNewLicense;
+        // Dynamsoft.DBR.BarcodeReader.license = scanerNewLicense;
         scanerNewObj = await Dynamsoft.DBR.BarcodeScanner.createInstance();
 
         let settings = await scanerNewObj.getRuntimeSettings();
@@ -142,12 +140,11 @@ async function showScaner(isOnce = false) {
           document.getElementById("barcode-scaner")
         );
         await scanerNewObj.setResolution(400, 400);
-        // scanerNewObj.show();
         document.getElementById("dce-video-container").style.display = "block";
-        // setTimeout(() => {
-          await scanerNewObj.show();
-          document.getElementById("dce-bg-loading").classList.add("hide");
-        // }, 1000);
+        setTimeout(() => {
+          scanerNewObj.show();
+        document.getElementById("dce-bg-loading").classList.add("hide");
+        }, 1000);
       }
     } catch (e) {
       let err;
