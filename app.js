@@ -142,7 +142,7 @@ async function showScaner(isOnce = false) {
         await scanerNewObj.setResolution(400, 400);
         document.getElementById("dce-video-container").style.display = "block";
         // setTimeout(() => {
-          scanerNewObj.show();
+        await scanerNewObj.show();
         document.getElementById("dce-bg-loading").classList.add("hide");
         // }, 1000);
       }
