@@ -191,8 +191,13 @@ function scanerResult(code) {
       sendDataToApi(code)
     );
   } else {
-    alert('QR успішно відскановано ✅\n Перевіряємо інформацію ⏳');
-    sendDataToApi(code);
+    // alert('QR успішно відскановано ✅\n Перевіряємо інформацію ⏳');
+    // sendDataToApi(code);
+
+    window.Telegram.WebApp.showAlert(
+      "QR успішно відскановано ✅\n Перевіряємо інформацію ⏳",
+      sendDataToApi(code)
+    );
   }
 }
 
