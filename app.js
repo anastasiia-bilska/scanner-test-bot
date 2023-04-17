@@ -203,28 +203,28 @@ function sendDataToApi (code) {
     lastCode = null;
   }, 1500);
 
-let xhr = new XMLHttpRequest();
-  xhr.open('POST', {{{msg.serverUrl}}}'/QRres', true);
-  xhr.setRequestHeader('Content-Type', 'application/json');
+  // let xhr = new XMLHttpRequest();
+  // xhr.open('POST', {{{msg.serverUrl}}}'/QRres', true);
+  // xhr.setRequestHeader('Content-Type', 'application/json');
 
-  if (channel === 'telegram') {
-    xhr.send(
-      JSON.stringify({
-        text: code,
-        channel: {{{payload.channel}}},
-        phone: {{{payload.phone}}},
-        user: window.Telegram.WebApp.initDataUnsafe.user,
-      })
-    );
-  } else if (channel === 'viber') {
-    xhr.send(
-      JSON.stringify({
-        text: code,
-        channel: {{{payload.channel}}},
-        phone: {{{payload.phone}}},
-      })
-    );
-  }
+  // if (channel === 'telegram') {
+  //   xhr.send(
+  //     JSON.stringify({
+  //       text: code,
+  //       channel: {{{payload.channel}}},
+  //       phone: {{{payload.phone}}},
+  //       user: window.Telegram.WebApp.initDataUnsafe.user,
+  //     })
+  //   );
+  // } else if (channel === 'viber') {
+  //   xhr.send(
+  //     JSON.stringify({
+  //       text: code,
+  //       channel: {{{payload.channel}}},
+  //       phone: {{{payload.phone}}},
+  //     })
+  //   );
+  // }
 
   // отправляем данные на api - початковий
   // let xhr = new XMLHttpRequest();
