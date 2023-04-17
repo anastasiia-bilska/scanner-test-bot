@@ -159,7 +159,7 @@ async function showScaner(isOnce = false) {
         window.console.log(err);
       }
 
-      if (scanerObj && scanerObj.hide) {
+      if (scanerNewObj && scanerNewObj.hide) {
         scanerObj.hide();
         scanerObj.destroyContext();
         scanerObj = null;
