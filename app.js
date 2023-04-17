@@ -166,8 +166,8 @@ async function showScaner(isOnce = false) {
       }
 
       alert("Щось пішло не так... Повертаємось на попередній сканер");
-
-      changeScaner();
+      scanerCurrent = "old";
+      showScaner();
     }
   }
 }
@@ -180,7 +180,6 @@ async function changeScaner() {
     }
   } else if (scanerCurrent === "new" && scanerNewObj) {
     scanerNewObj.hide();
-    scanerNewObj = null;
   }
 
   scanerCurrent = scanerCurrent === "old" ? "new" : "old";
