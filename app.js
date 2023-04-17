@@ -101,7 +101,7 @@ async function showScaner(isOnce = false) {
         document.getElementById("dce-bg-loading").classList.add("hide");
       } else {
         // if ( !Dynamsoft.DBR.BarcodeReader.license )
-        //     Dynamsoft.DBR.BarcodeReader.license = scanerNewLicense;
+            // Dynamsoft.DBR.BarcodeReader.license = scanerNewLicense;
         scanerNewObj = await Dynamsoft.DBR.BarcodeScanner.createInstance();
 
         let settings = await scanerNewObj.getRuntimeSettings();
@@ -144,10 +144,10 @@ async function showScaner(isOnce = false) {
         await scanerNewObj.setResolution(400, 400);
         // scanerNewObj.show();
         document.getElementById("dce-video-container").style.display = "block";
-        setTimeout(() => {
-          scanerNewObj.show();
+        // setTimeout(() => {
+          await scanerNewObj.show();
           document.getElementById("dce-bg-loading").classList.add("hide");
-        }, 1000);
+        // }, 1000);
       }
     } catch (e) {
       let err;
@@ -163,12 +163,16 @@ async function showScaner(isOnce = false) {
         scanerNewObj.hide();
         scanerNewObj.destroyContext();
         scanerNewObj = null;
+
+        window.console.log("new error");
+        alert("Щось пішло не так... Повертаємось на попередній сканер");
+        changeScaner();
       }
 
       // if (!isOnce) {
+        window.console.log('new error');
         alert("Щось пішло не так... Повертаємось на попередній сканер");
-        scanerCurrent = "old";
-        showScaner();
+        changeScaner();
       // }
     }
   }
