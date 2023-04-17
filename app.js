@@ -160,9 +160,9 @@ async function showScaner(isOnce = false) {
       }
 
       if (scanerNewObj && scanerNewObj.hide) {
-        scanerObj.hide();
-        scanerObj.destroyContext();
-        scanerObj = null;
+        scanerNewObj.hide();
+        scanerNewObj.destroyContext();
+        scanerNewObj = null;
       }
 
       alert("Щось пішло не так... Повертаємось на попередній сканер");
@@ -180,6 +180,7 @@ async function changeScaner() {
     }
   } else if (scanerCurrent === "new" && scanerNewObj) {
     scanerNewObj.hide();
+    scanerNewObj = null;
   }
 
   scanerCurrent = scanerCurrent === "old" ? "new" : "old";
