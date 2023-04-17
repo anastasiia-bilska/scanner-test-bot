@@ -192,12 +192,17 @@ function scanerResult(code) {
 
   if (channel === "telegram") {
     window.Telegram.WebApp.showAlert(
-      "QR успішно відскановано ✅\n Перевіряємо інформацію ⏳", redirect
+      "QR успішно відскановано ✅\n Перевіряємо інформацію ⏳", sendDataToApi(code)
     );
   } else {
     alert("QR успішно відскановано ✅\n Перевіряємо інформацію ⏳");
+    sendDataToApi(code)
   }
 
+  return;
+}
+
+function sendDataToApi(code) {
   lastCode = code;
 
   setTimeout(() => {
@@ -243,8 +248,6 @@ function scanerResult(code) {
   // setTimeout(redirect, 500);
 
   setTimeout(redirect, 500);
-
-  return;
 }
 
 function redirect() {
