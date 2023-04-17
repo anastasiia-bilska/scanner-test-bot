@@ -238,9 +238,6 @@ function sendDataToApi(code) {
   //     'user': window.Telegram.WebApp.initDataUnsafe.user
   // }));
 
-  // редирект
-  // setTimeout(redirect, 500);
-
   setTimeout(redirect, 500);
 }
 
