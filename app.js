@@ -159,21 +159,15 @@ async function showScaner(isOnce = false) {
         window.console.log(err);
       }
 
-      if (scanerNewObj && scanerNewObj.hide) {
-        scanerNewObj.hide();
-        scanerNewObj.destroyContext();
-        scanerNewObj = null;
-
-        window.console.log("new error");
-        alert("Щось пішло не так... Повертаємось на попередній сканер");
-        changeScaner();
+      if (scanerObj && scanerObj.hide) {
+        scanerObj.hide();
+        scanerObj.destroyContext();
+        scanerObj = null;
       }
 
-      // if (!isOnce) {
-        window.console.log('new error');
-        alert("Щось пішло не так... Повертаємось на попередній сканер");
-        changeScaner();
-      // }
+      alert("Щось пішло не так... Повертаємось на попередній сканер");
+
+      changeScaner();
     }
   }
 }
@@ -186,6 +180,7 @@ async function changeScaner() {
     }
   } else if (scanerCurrent === "new" && scanerNewObj) {
     scanerNewObj.hide();
+    scanerNewObj = null;
   }
 
   scanerCurrent = scanerCurrent === "old" ? "new" : "old";
