@@ -78,11 +78,11 @@ async function showScaner(isOnce = false) {
           scanerOldObj = null;
         }
 
-        if (!isOnce) {
+        // if () {
           alert("Щось пішло не так! Змінюю сканер...");
           scanerCurrent = "new";
-          showScaner(true);
-        }
+          showScaner();
+        // }
       }
     }
     //запуск нового сканера
@@ -165,11 +165,11 @@ async function showScaner(isOnce = false) {
         scanerNewObj = null;
       }
 
-      if (!isOnce) {
+      // if (!isOnce) {
         alert("Щось пішло не так... Повертаємось на попередній сканер");
         scanerCurrent = "old";
-        showScaner(true);
-      }
+        showScaner();
+      // }
     }
   }
 }
