@@ -22,12 +22,6 @@ async function showScaner(isOnce = false) {
     try {
       document.getElementById("loader-wrapper").classList.remove("hide");
 
-      // if (channel === 'telegram') {
-      //   window.Telegram.WebApp.showScanQrPopup({
-      //     text: 'Помістіть QR-код у центр екрану 🎯',
-      //   });
-      //   window.Telegram.WebApp.onEvent('qrTextReceived', scanerResult);
-      // } else {
       setTimeout(() => {
         if (
           scanerOldObj &&
@@ -171,11 +165,11 @@ async function showScaner(isOnce = false) {
         scanerNewObj = null;
       }
 
-      // if (!isOnce) {
-      alert("Щось пішло не так... Повертаємось на попередній сканер");
-      scanerCurrent = "old";
-      showScaner(true);
-      // }
+      if (!isOnce) {
+        alert("Щось пішло не так... Повертаємось на попередній сканер");
+        scanerCurrent = "old";
+        showScaner(true);
+      }
     }
   }
 }
