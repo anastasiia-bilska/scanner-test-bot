@@ -5,15 +5,15 @@ let channel = urlParams.get('channel');
 let phone = urlParams.get('phone');
 
 if (channel) {
-  sessionStorage.setItem('channel', channel);
+  localStorage.setItem('channel', channel);
 } else {
-  channel = sessionStorage.getItem('channel');
+  channel = localStorage.getItem('channel');
 }
 
 if (phone) {
-  sessionStorage.setItem('phone', phone);
+  localStorage.setItem('phone', phone);
 } else {
-  phone = sessionStorage.getItem('phone');
+  phone = localStorage.getItem('phone');
 }
 
 if (channel === 'telegram') {
@@ -97,11 +97,9 @@ async function showScaner() {
       scanerObj = null;
     }
 
-    alert("Щось пішло не так... Повертаємось на попередній сканер");
+    alert('Щось пішло не так... Повертаємось на попередній сканер');
 
-    // setTimeout(() => {
-      window.location.replace("index.html");
-    // }, 500);
+    window.location.replace('/qrCode');
   }
 }
 
@@ -172,5 +170,5 @@ function redirect() {
     window.location.replace(decodeURIComponent('{{payload.redirectLink}}'));
   }
 
-  window.location.replace(decodeURIComponent("https://apt911.co/01ee6a"));
+  window.location.replace(decodeURIComponent('https://apt911.co/01ee6a'));
 }

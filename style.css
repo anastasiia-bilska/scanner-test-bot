@@ -1,5 +1,5 @@
 :root {
-  --main-color: #cd3226;
+  --main-color: #a82420;
 }
 
 * {
@@ -18,20 +18,16 @@ a {
   color: #4d4d4d;
 }
 
-/* body {
+body {
   background-color: #fff;
-} */
-
-.hidden {
-  visibility: hidden;
 }
 
-html {
-  height: min-content;
+main {
+  min-height: 460px;
 }
 
 .hide {
-  display: none;
+  display: none !important;
 }
 
 .container {
@@ -39,7 +35,7 @@ html {
 }
 
 .header {
-  margin-bottom: 25px;
+  margin-bottom: 30px;
   background-color: var(--main-color);
 }
 
@@ -59,17 +55,39 @@ html {
   margin-bottom: 16px;
   text-align: center;
 
-  font-size: 28px;
+  font-size: 35px;
   font-weight: 700;
 }
 
 .start__instruction {
-  font-size: 20px;
+  font-size: 23px;
   text-align: center;
+}
+
+.dls-license-mask {
+  display: none !important;
 }
 
 .scanner {
   margin-bottom: 25px;
+}
+
+.app {
+  /* margin-bottom: 38px; */
+  height: 270px;
+  max-height: 100%;
+  margin-bottom: 23px;
+}
+
+.barcode-scaner {
+  position: relative !important;
+  width: 100%;
+  height: 100%;
+}
+
+.dce-bg-loading {
+  position: relative;
+  height: 220px;
 }
 
 .reader-wrap {
@@ -114,19 +132,21 @@ html {
   }
 }
 
-.warning {
-  font-size: 14px;
-  padding: 0 40px;
-  text-align: center;
+.dce-scanarea {
+  position: absolute;
+  z-index: 1;
+  border: none;
 }
 
-.warning__star {
-  color: var(--main-color);
-  font-size: 20px;
-}
-
-.warning__important {
-  color: var(--main-color);
+.dce-scanlight {
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  border-radius: 50%;
+  box-shadow: rgb(254, 142, 20) 0px 0px 2vw 1px;
+  background: rgb(254, 142, 20);
+  animation: 3s infinite dce-scanlight;
+  user-select: none;
 }
 
 .unsuccessful {
@@ -167,9 +187,29 @@ html {
   background-color: #e68f88;
 }
 
+.dce-video-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+
+.footer {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.footer__link {
+  color: var(--main-color);
+}
+
 @media (max-width: 380px) {
-  .header {
-    margin-bottom: 15px;
+  .app {
+    height: 245px;
+  }
+
+  main {
+    min-height: 385px;
   }
 
   .start {
@@ -207,21 +247,16 @@ html {
 }
 
 @media (max-height: 660px) {
-  .header {
-    margin-bottom: 15px;
+  .app {
+    height: 245px;
   }
 
-  .header__logo {
-    width: 150px;
+  main {
+    min-height: 385px;
   }
 
   .start__instruction {
     font-size: 16px;
-  }
-
-  .warning {
-    padding: 0 25px;
-    font-size: 13px;
   }
 
   .unsuccessful {
