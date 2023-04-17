@@ -258,5 +258,5 @@ function redirect() {
     window.location.replace(decodeURIComponent("{{payload.redirectLink}}"));
   }
 
-  window.location.replace(decodeURIComponent("https://t.me/testforqr_bot"));
+ window.Telegram.WebApp.close();
 }
