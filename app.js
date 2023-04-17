@@ -150,10 +150,8 @@ async function showScaner(isOnce = false) {
         await scanerNewObj.setResolution(400, 400);
         // scanerNewObj.show();
         document.getElementById("dce-video-container").style.display = "block";
-        setTimeout(() => {
-          scanerNewObj.show();
-          document.getElementById("dce-bg-loading").classList.add("hide");
-        }, 1000);
+        await scanerNewObj.show();
+        document.getElementById("dce-bg-loading").classList.add("hide");
       }
     } catch (e) {
       let err;
@@ -171,11 +169,11 @@ async function showScaner(isOnce = false) {
         scanerNewObj = null;
       }
 
-      if (!isOnce) {
+      
         alert("Щось пішло не так... Повертаємось на попередній сканер");
         scanerCurrent = "old";
         showScaner(true);
-      }
+      
     }
   }
 }
