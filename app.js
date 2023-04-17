@@ -162,8 +162,7 @@ async function showScaner(isOnce = false) {
         scanerNewObj = null;
       }
 
-      alert(e.message || e);
-      // alert("Щось пішло не так... Повертаємось на попередній сканер");
+      alert("Щось пішло не так... Повертаємось на попередній сканер");
       scanerCurrent = "old";
       showScaner();
     }
@@ -193,7 +192,7 @@ function scanerResult(code) {
 
   if (channel === "telegram") {
     window.Telegram.WebApp.showAlert(
-      "QR успішно відскановано ✅\n Перевіряємо інформацію ⏳"
+      "QR успішно відскановано ✅\n Перевіряємо інформацію ⏳", redirect
     );
   } else {
     alert("QR успішно відскановано ✅\n Перевіряємо інформацію ⏳");
@@ -250,8 +249,11 @@ function scanerResult(code) {
 
 function redirect() {
   if (channel === "telegram") {
+    lastCode = null;
     window.Telegram.WebApp.close();
   } else if (channel === "viber") {
     window.location.replace(decodeURIComponent("{{payload.redirectLink}}"));
   }
+
+  window.location.replace(decodeURIComponent("https://t.me/testforqr_bot"));
 }
