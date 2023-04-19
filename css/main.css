@@ -1394,7 +1394,7 @@ textarea {
     width: 12px !important;
  }
 
- /* Track */
+ /* Track
 .modal__container::-webkit-scrollbar-track {
    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3) !important;
    -webkit-border-radius: 10px !important;
@@ -1402,42 +1402,34 @@ textarea {
  }
 
  /* Handle */
- .modal__container::-webkit-scrollbar-thumb {
+ /* .modal__container::-webkit-scrollbar-thumb {
    -webkit-border-radius: 10px !important;
    border-radius: 10px !important;
    background: #41617D !important; 
    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5) !important; 
 
- }
- .modal__container::-webkit-scrollbar-thumb:window-inactive {
+ } */
+ /* .modal__container::-webkit-scrollbar-thumb:window-inactive {
    background: #41617D !important; 
- }
+ } */ */
 
-/* .modal__container::-webkit-scrollbar {
-  -webkit-appearance: none;
+.modal__container::-webkit-scrollbar {
+  -webkit-appearance: auto;
 }
 
 .modal__container::-webkit-scrollbar:vertical {
-  max-width: 0.25em;
-}
-
-.modal__container::-webkit-scrollbar:vertical:active {
-  max-width: 0.25em;
-}
-
-.modal__container::-webkit-scrollbar:horizontal {
-  height: 11px;
+  width: 0.25em !important;
 }
 
 .modal__container::-webkit-scrollbar-track {
-  -webkit-margin-before: 20px;
-          margin-block-start: 20px;
+  -webkit-margin-before: 20px !important;
+          margin-block-start: 20px !important;
 }
 
 .modal__container::-webkit-scrollbar-thumb {
-  border-radius: 8px;
-  background-color: var(--color-scroll);
-} */
+  border-radius: 8px !important;
+  background-color: var(--color-scroll) !important;
+}
 
 .modal__title {
   font-weight: var(--font-extra-bold);
