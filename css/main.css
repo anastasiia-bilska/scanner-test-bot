@@ -1469,16 +1469,10 @@ textarea {
   height: calc(80vh - 70px);
 }
 
-/* @media screen and (-webkit-min-device-pixel-ratio:0) {  */
+@media screen and (-webkit-min-device-pixel-ratio:0) { 
 
     /* Safari only override */
-    /* ::i-block-chrome,.modal__body--instruction{
-        height: calc(80vh - 100px)
-    } 
-} */
-
-@media not all and (min-resolution:.1dpi) {
-    .modal__body--instruction{
+    ::i-block-chrome,.modal__body--instruction{
         height: calc(80vh - 100px)
     } 
 }
