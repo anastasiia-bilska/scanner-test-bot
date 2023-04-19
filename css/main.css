@@ -274,6 +274,7 @@ template {
   --shadow: 0px 0px 15px rgba(93, 148, 172, 0.2);
   --transition-time: 0.3s;
   --transition: all var(--transition-time);
+  --header-height: 0;
 }
 
 .modal__action,
@@ -1422,7 +1423,7 @@ textarea {
 .modal__body--instruction {
   padding-top: 0.5em;
   margin: 0;
-  height: calc(80vh - 70px);
+  max-height: calc(80vh - var(--header-height));
 }
 
 .modal__actions {

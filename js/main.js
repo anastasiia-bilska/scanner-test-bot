@@ -1,6 +1,12 @@
 console.log('%cMade by Zakandaiev', 'background:#1db590;color:#fff;padding:10px;font-weight:bold;');
 
-
+const headerHeight = document.querySelector(
+  ".modal__header--instruction"
+).offsetHeight;
+document.documentElement.style.setProperty(
+  "--header-height",
+  `${headerHeight}px`
+);
 // UTILS
 function fadeOut(element, soft = false, callback = null) {
 	if(!element) {
