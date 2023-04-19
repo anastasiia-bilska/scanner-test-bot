@@ -1,12 +1,5 @@
 console.log('%cMade by Zakandaiev', 'background:#1db590;color:#fff;padding:10px;font-weight:bold;');
 
-const headerHeight = document.querySelector(
-  ".modal__header--instruction"
-).offsetHeight;
-document.documentElement.style.setProperty(
-  "--header-height",
-  `${headerHeight}px`
-);
 // UTILS
 function fadeOut(element, soft = false, callback = null) {
 	if(!element) {
@@ -121,6 +114,14 @@ function showModalInstruction(textHeader, textBody='') {
 	const header = document.createElement('div');
 	header.classList.add('modal__header');
 	header.classList.add('modal__header--instruction');
+
+  const headerHeight = document.querySelector(
+    ".modal__header--instruction"
+  ).offsetHeight;
+  document.documentElement.style.setProperty(
+    "--header-height",
+    `${headerHeight}px`
+  );
 
 	const headerText = document.createElement('span');
 	headerText.textContent = textHeader;
