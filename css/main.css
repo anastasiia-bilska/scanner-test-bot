@@ -1392,7 +1392,11 @@ textarea {
 }
 
 .modal__container::-webkit-scrollbar:vertical {
-  width: 0.25em;
+  max-width: 0.25em;
+}
+
+.modal__container::-webkit-scrollbar:vertical:active {
+  max-width: 0.25em;
 }
 
 .modal__container::-webkit-scrollbar:horizontal {
