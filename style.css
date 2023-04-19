@@ -1,5 +1,7 @@
 :root {
   --main-color: #a82420;
+  --main-height: 100%;
+  --instruction-mb: 25px
 }
 
 * {
@@ -46,20 +48,9 @@ main {
   width: 200px;
 }
 
-.start {
+.instruction {
   padding: 0 25px;
-  margin-bottom: 25px;
-}
-
-.start__title {
-  margin-bottom: 16px;
-  text-align: center;
-
-  font-size: 35px;
-  font-weight: 700;
-}
-
-.start__instruction {
+  margin-bottom: var(--instruction-mb);
   font-size: 23px;
   text-align: center;
 }

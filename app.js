@@ -11,15 +11,16 @@ if (channel === "telegram") {
 const isAndroid = /Android/i.test(navigator.userAgent);
 const isIphone = /Iphone/i.test(navigator.userAgent);
 
-if (isAndroid) {
-  alert("Анроїд");
-}
 
-if (isIphone) {
-  alert("Айфон");
-}
 
-document.getElementById("footer");
+const footer = document.getElementById("footer");
+
+if (
+  (isAndroid && channel === "viber") ||
+  (isIphone && channel === "telegram")
+) {
+  footer.classList.add("hide");
+}
 
 let scanerCurrent = "old";
 let scanerNewObj, scanerOldObj, lastCode;
