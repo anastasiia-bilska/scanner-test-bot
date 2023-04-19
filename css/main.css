@@ -1384,6 +1384,7 @@ textarea {
 }
 
 .modal__container {
+  height: 100%;
   overflow-y: scroll;
   padding: 0 calc(var(--gap) - 5px);
 }
