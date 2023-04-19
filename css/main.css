@@ -1351,7 +1351,7 @@ textarea {
 }
 
 .modal--instruction {
-  padding: 0 calc(var(--gap) / 2) var(--gap);
+  padding: 0 calc(var(--gap) - 15px) var(--gap);
   width: calc(100% - 16px - 16px);
   max-height: 80%;
 }
@@ -1384,7 +1384,7 @@ textarea {
 
 .modal__container {
   overflow-y: scroll;
-  padding: 0 calc(var(--gap) / 2);
+  padding: 0 calc(var(--gap) - 5px);
 }
 
 /* .modal__container::-webkit-scrollbar {
