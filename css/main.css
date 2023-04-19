@@ -1388,6 +1388,9 @@ textarea {
 }
 
 .modal__container::-webkit-scrollbar {
+    -webkit-appearance: none;
+ }
+.modal__container::-webkit-scrollbar:vertical {
     width: 12px !important;
  }
 
