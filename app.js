@@ -12,7 +12,7 @@ const isAndroid = /Android/i.test(navigator.userAgent);
 const isIphone = /Iphone/i.test(navigator.userAgent);
 
 if (isAndroid) {
-  alert("Анроід");
+  alert("Анроїд");
 }
 
 if (isIphone) {
