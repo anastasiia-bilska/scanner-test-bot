@@ -1387,12 +1387,12 @@ textarea {
   padding: 0 calc(var(--gap) / 2);
 }
 
-.modal__container::-webkit-scrollbar {
+/* .modal__container::-webkit-scrollbar {
     -webkit-appearance: none;
  }
 .modal__container::-webkit-scrollbar:vertical {
     width: 12px !important;
- }
+ } */
 
  /* Track
 .modal__container::-webkit-scrollbar-track {
@@ -1437,6 +1437,7 @@ textarea {
 }
 
 .modal__close {
+  background-color: transparent;
   flex-shrink: 0;
   display: block;
   width: 1em;
