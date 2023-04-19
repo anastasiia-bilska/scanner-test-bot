@@ -185,23 +185,18 @@ function scanerResult(code) {
     return;
   }
 
+  console.log(code);
+
   if (channel === "telegram") {
     window.Telegram.WebApp.showAlert(
       "QR успішно відскановано ✅\n Перевіряємо інформацію ⏳",
-      sendDataToApi(code)
-    );
-  } else {
-    // alert('QR успішно відскановано ✅\n Перевіряємо інформацію ⏳');
-    // sendDataToApi(code);
-
-    window.Telegram.WebApp.showAlert(
-      "QR ! ! ! успішно відскановано ✅\n Перевіряємо інформацію ⏳",
       () => {
         sendDataToApi(code);
       }
     );
-    // window.Telegram.WebApp.onEvent("popupClosed", function() { sendDataToApi(code)});
-    // sendDataToApi(code);
+  } else {
+    alert('QR успішно відскановано ✅\n Перевіряємо інформацію ⏳');
+    sendDataToApi(code);
   }
 }
 
@@ -236,15 +231,15 @@ function sendDataToApi(code) {
   // }
 
   // отправляем данные на api - початковий
-  // let xhr = new XMLHttpRequest();
+  let xhr = new XMLHttpRequest();
   // xhr.open('POST', {{{msg.serverUrl}}}'/QRres', true);
-  // xhr.setRequestHeader('Content-Type', 'application/json');
-  // xhr.send(JSON.stringify({
-  //     'text': code,
-  //     'channel': `{{{payload.channel}}}`,
-  //     'phone': `{{{payload.phone}}}`,
-  //     'user': window.Telegram.WebApp.initDataUnsafe.user
-  // }));
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.send(JSON.stringify({
+      'text': code,
+      'channel': `{{{payload.channel}}}`,
+      'phone': `{{{payload.phone}}}`,
+      'user': window.Telegram.WebApp.initDataUnsafe.user
+  }));
 
   setTimeout(redirect, 500);
 
