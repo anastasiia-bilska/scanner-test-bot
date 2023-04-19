@@ -115,14 +115,6 @@ function showModalInstruction(textHeader, textBody='') {
 	header.classList.add('modal__header');
 	header.classList.add('modal__header--instruction');
 
-  const headerHeight = document.querySelector(
-    ".modal__header--instruction"
-  ).offsetHeight;
-  document.documentElement.style.setProperty(
-    "--header-height",
-    `${headerHeight}px`
-  );
-
 	const headerText = document.createElement('span');
 	headerText.textContent = textHeader;
   headerText.classList.add('modal__title');
@@ -153,6 +145,14 @@ function showModalInstruction(textHeader, textBody='') {
 	// SHOW
 	document.body.appendChild(modal);
 	document.body.classList.add('modal-open');
+
+  const modalHeight = document.querySelector(
+    ".modal--instruction"
+  ).offsetHeight;
+  document.documentElement.style.setProperty(
+    "--modal-height",
+    `${modalHeight * 0.8}px`
+  );
 
 	return modal;
 }
