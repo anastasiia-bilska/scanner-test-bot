@@ -1387,7 +1387,7 @@ textarea {
   padding: 0 calc(var(--gap) / 2);
 }
 
-.modal__container::-webkit-scrollbar {
+/* .modal__container::-webkit-scrollbar {
   -webkit-appearance: none;
 }
 
@@ -1411,7 +1411,7 @@ textarea {
 .modal__container::-webkit-scrollbar-thumb {
   border-radius: 8px;
   background-color: var(--color-scroll);
-}
+} */
 
 .modal__title {
   font-weight: var(--font-extra-bold);
