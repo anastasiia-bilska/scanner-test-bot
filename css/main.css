@@ -1353,7 +1353,7 @@ textarea {
 .modal--instruction {
   padding: 0 calc(var(--gap) - 15px) var(--gap);
   width: calc(100% - 16px - 16px);
-  max-height: 80%;
+  height: 80%;
 }
 
 .modal--instruction u {
