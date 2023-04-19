@@ -8,6 +8,19 @@ if (channel === "telegram") {
   window.Telegram.WebApp.expand();
 }
 
+const isAndroid = /Android/i.test(navigator.userAgent);
+const isIphone = /Iphone/i.test(navigator.userAgent);
+
+if (isAndroid) {
+  alert("Анроід");
+}
+
+if (isIphone) {
+  alert("Айфон");
+}
+
+document.getElementById("footer");
+
 let scanerCurrent = "old";
 let scanerNewObj, scanerOldObj, lastCode;
 
@@ -195,7 +208,7 @@ function scanerResult(code) {
       }
     );
   } else {
-    alert('QR успішно відскановано ✅\n Перевіряємо інформацію ⏳');
+    alert("QR успішно відскановано ✅\n Перевіряємо інформацію ⏳");
     sendDataToApi(code);
   }
 }
@@ -233,13 +246,15 @@ function sendDataToApi(code) {
   // отправляем данные на api - початковий
   let xhr = new XMLHttpRequest();
   // xhr.open('POST', {{{msg.serverUrl}}}'/QRres', true);
-  xhr.setRequestHeader('Content-Type', 'application/json');
-  xhr.send(JSON.stringify({
-      'text': code,
-      'channel': `{{{payload.channel}}}`,
-      'phone': `{{{payload.phone}}}`,
-      'user': window.Telegram.WebApp.initDataUnsafe.user
-  }));
+  xhr.setRequestHeader("Content-Type", "application/json");
+  xhr.send(
+    JSON.stringify({
+      text: code,
+      channel: `{{{payload.channel}}}`,
+      phone: `{{{payload.phone}}}`,
+      user: window.Telegram.WebApp.initDataUnsafe.user,
+    })
+  );
 
   setTimeout(redirect, 500);
 
