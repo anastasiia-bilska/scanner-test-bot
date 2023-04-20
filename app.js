@@ -268,21 +268,21 @@ function sendDataToApi(code) {
   // }
 
   // отправляем данные на api - початковий
-  let xhr = new XMLHttpRequest();
+  // let xhr = new XMLHttpRequest();
   // xhr.open('POST', {{{msg.serverUrl}}}'/QRres', true);
-  xhr.setRequestHeader('Content-Type', 'application/json');
-  xhr.send(
-    JSON.stringify({
-      text: code,
-      channel: `{{{payload.channel}}}`,
-      phone: `{{{payload.phone}}}`,
-      user: window.Telegram.WebApp.initDataUnsafe.user,
-    })
-  );
+  // xhr.setRequestHeader('Content-Type', 'application/json');
+  // xhr.send(
+  //   JSON.stringify({
+  //     text: code,
+  //     channel: `{{{payload.channel}}}`,
+  //     phone: `{{{payload.phone}}}`,
+  //     user: window.Telegram.WebApp.initDataUnsafe.user,
+  //   })
+  // );
 
-  setTimeout(redirect, 500);
+  // setTimeout(redirect, 500);
 
-  return;
+  // return;
 }
 
 function redirect() {
