@@ -26,7 +26,8 @@ body {
 }
 
 main {
-  min-height: 460px;
+  min-height: calc(84px + 25px + var(--scanner-size));
+  margin-bottom: 30px;
 }
 
 .hide {
@@ -52,23 +53,19 @@ main {
 .instruction {
   padding: 0 25px;
   margin-bottom: 25px;
+  height: 84px;
+  line-height: 28px;
   font-size: 23px;
   text-align: center;
-}
-
-.scanner {
-  margin-bottom: 25px;
 }
 
 .dls-license-mask {
   display: none !important;
 }
 
-
 .app {
   height: var(--scanner-size);
   max-height: 100%;
-  margin-bottom: 23px;
 }
 
 .barcode-scaner {
@@ -85,7 +82,6 @@ main {
 .reader-wrap {
   display: block !important;
   min-height: var(--scanner-size);
-  margin-bottom: 10px;
 }
 
 .reader {
@@ -201,12 +197,16 @@ main {
   }
 
   main {
-    min-height: 385px;
+    min-height: calc(75px + 20px + var(--scanner-size-sm));
+    margin-bottom: 20px;
   }
 
   .instruction {
     margin-bottom: 20px;
     font-size: 18px;
+    /* margin-bottom: 25px; */
+    height: 75px;
+    line-height: 25px;
   }
 
   .scanner {
@@ -227,31 +227,5 @@ main {
 
   .reader-wrap {
     min-height: var(--scanner-size-sm);
-  }
-}
-
-@media (max-height: 660px) {
-  .app {
-    height: var(--scanner-size-sm);
-  }
-
-  main {
-    min-height: 385px;
-  }
-
-  .start__instruction {
-    font-size: 16px;
-  }
-
-  .unsuccessful {
-    margin-bottom: 10px;
-  }
-
-  .unsuccessful__title {
-    margin-bottom: 0;
-  }
-
-  .unsuccessful__instruction {
-    font-size: 16px;
   }
 }
