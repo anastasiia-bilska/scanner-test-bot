@@ -280,7 +280,7 @@ function sendDataToApi(code) {
   //   })
   // );
 
-  // setTimeout(redirect, 500);
+  setTimeout(redirect, 500);
 
   // return;
 }
