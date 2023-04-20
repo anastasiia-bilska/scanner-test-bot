@@ -26,6 +26,10 @@ if ((isAndroid && channel === 'viber') || (isIOS && channel === 'telegram')) {
 let scanerCurrent = 'old';
 let scanerNewObj, scanerOldObj, lastCode;
 
+const sleep = (ms) => {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+};
+
 // запуск сканера
 async function showScaner() {
   //запуск старого сканера
@@ -113,8 +117,9 @@ async function showScaner() {
     document.getElementById('scanner-dynamsoft').classList.remove('hide');
     try {
       document.getElementById('dce-bg-loading').classList.remove('hide');
+      window.console.log(scanerNewObj);
       if (scanerNewObj) {
-        scanerNewObj.show();
+        await scanerNewObj.show();
         document.getElementById('dce-bg-loading').classList.add('hide');
       } else {
         // if ( !Dynamsoft.DBR.BarcodeReader.license )
