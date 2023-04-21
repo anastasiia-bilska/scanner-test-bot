@@ -1,5 +1,13 @@
 body {
-  background-color: var(--tg-theme-bg-color, #086);
-  color: var(--tg-theme-text-color, #005);
+  --bg-color: var(--tg-theme-bg-color, #fff);
+  font-family: sans-serif;
+  background-color: var(--bg-color);
+  color: var(--tg-theme-text-color, #222);
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
   color-scheme: var(--tg-color-scheme);
+}
+body.gray {
+  background-color: var(--tg-theme-secondary-bg-color, #efefef);
 }
