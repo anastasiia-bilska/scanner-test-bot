@@ -165,11 +165,14 @@ async function showScaner() {
 
         scanerNewObj.onPlayed = async () => {
           let rs = await scanerNewObj.getRuntimeSettings();
+          window.console.log(rs);
+          // let rs = await scanerNewObj;
           rs.region.regionLeft = 5;
           rs.region.regionRight = 95;
           rs.region.regionTop = 5;
           rs.region.regionBottom = 95;
           rs.region.regionMeasuredByPercentage = 1;
+          rs.timeout = 20000;
           await scanerNewObj.updateRuntimeSettings(rs);
         };
 
