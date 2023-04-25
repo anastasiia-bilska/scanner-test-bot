@@ -2,7 +2,7 @@
 
 const urlParams = new URLSearchParams(window.location.search);
 // const channel = urlParams.get('channel');
-let channel = 'telegram';
+// let channel = 'telegram';
 const phone = urlParams.get('phone');
 
 // if (channel === 'telegram') {
@@ -28,7 +28,7 @@ if ((isAndroid && channel === 'viber') || (isIOS && channel === 'telegram')) {
   footer.classList.remove('hide');
 }
 
-let scanerCurrent = 'old';
+let scanerCurrent = 'new';
 
 // if (isAndroid && channel === 'telegram') {
 //   scanerCurrent = 'new';
@@ -56,8 +56,6 @@ async function showScaner() {
     document.getElementById('scanner-HTML5').classList.remove('hide');
     try {
       document.getElementById('loader-wrapper').classList.remove('hide');
-
-      scanerOldObj.resume();
 
       setTimeout(() => {
         if (
@@ -183,9 +181,9 @@ async function showScaner() {
           document.getElementById('barcode-scaner')
         );
         await scanerNewObj.setResolution(400, 400);
-        document.getElementById('dce-video-container').style.display = 'block';
         document.getElementById('dce-bg-loading').classList.add('hide');
         await scanerNewObj.show();
+        document.getElementById('dce-video-container').style.display = 'block';
       // }
     } catch (e) {
       let err;
