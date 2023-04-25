@@ -130,7 +130,6 @@ async function showScaner() {
 
     document.getElementById('scanner-dynamsoft').classList.remove('hide');
     try {
-      document.getElementById('dce-bg-loading').classList.remove('hide');
       if (scanerNewObj) {
         await scanerNewObj.show();
         document.getElementById('dce-bg-loading').classList.add('hide');
@@ -172,6 +171,7 @@ async function showScaner() {
           rs.region.regionTop = 5;
           rs.region.regionBottom = 95;
           rs.region.regionMeasuredByPercentage = 1;
+          rs.setTimeout = 1000000000;
           await scanerNewObj.updateRuntimeSettings(rs);
         };
 
