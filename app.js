@@ -15,9 +15,9 @@ document.documentElement.style.setProperty(
   `${instructionHeight}px`
 );
 
-const isAndroid = /Android/i.test(navigator.userAgent);
+// const isAndroid = /Android/i.test(navigator.userAgent);
 // const isAndroid = true;
-// const isAndroid = false;
+const isAndroid = false;
 const isIOS = /Iphone/i.test(navigator.userAgent);
 
 const footer = document.getElementById('footer');
@@ -131,7 +131,6 @@ async function showScaner() {
     document.getElementById('scanner-dynamsoft').classList.remove('hide');
     try {
       document.getElementById('dce-bg-loading').classList.remove('hide');
-      window.console.log(scanerNewObj);
       if (scanerNewObj) {
         await scanerNewObj.show();
         document.getElementById('dce-bg-loading').classList.add('hide');
