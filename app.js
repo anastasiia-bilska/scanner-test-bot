@@ -49,11 +49,11 @@ showScaner();
 function showScaner() {
   window.Telegram.WebApp.showScanQrPopup(
     {
-      text: 'Помістіть QR-код у центр екрану 🎯',
+      text: 'Помістіть !!!!QR-код у центр екрану 🎯',
     },
-    (code) => { closeScanQrPopup(code) }
+    (code) => { scanerResultp(code); }
   );
-  window.Telegram.WebApp.onEvent('qrTextReceived', scanerResult);
+  // window.Telegram.WebApp.onEvent('qrTextReceived', scanerResult);
 }
 
 // запуск сканера
