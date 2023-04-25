@@ -6,7 +6,7 @@ const channel = 'telegram';
 const phone = urlParams.get('phone');
 
 // if (channel === 'telegram') {
-  window.Telegram.WebApp.expand();
+window.Telegram.WebApp.expand();
 // }
 
 const instructionHeight = document.getElementById('instruction').offsetHeight;
@@ -42,17 +42,19 @@ const sleep = (ms) => {
   return new Promise((resolve) => setTimeout(resolve, ms));
 };
 
-window.console.log(scanerCurrent)
+window.console.log(scanerCurrent);
 
 showScaner();
 
 function showScaner() {
-  window.Telegram.WebApp.showScanQrPopup({
-    text: 'Помістіть QR-код у центр екрану 🎯',
-  });
-  window.Telegram.WebApp.onEvent('qrTextReceived', scanerResult);
+  window.Telegram.WebApp.showScanQrPopup(
+    {
+      text: 'Помістіть QR-код у центр екрану 🎯',
+    },
+    () => scanerResult()
+  );
+  // window.Telegram.WebApp.onEvent('qrTextReceived', scanerResult);
 }
-
 
 // запуск сканера
 // async function showScaner() {
