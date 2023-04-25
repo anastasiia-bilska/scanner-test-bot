@@ -129,11 +129,12 @@ async function showScaner() {
     lastCode = null;
 
     document.getElementById('scanner-dynamsoft').classList.remove('hide');
+    document.getElementById('dce-bg-loading').classList.remove('hide');
     try {
-      if (scanerNewObj) {
-        await scanerNewObj.show();
-        document.getElementById('dce-bg-loading').classList.add('hide');
-      } else {
+      // if (scanerNewObj) {
+      //   await scanerNewObj.show();
+      //   document.getElementById('dce-bg-loading').classList.add('hide');
+      // } else {
         // if ( !Dynamsoft.DBR.BarcodeReader.license )
         //     Dynamsoft.DBR.BarcodeReader.license = scanerNewLicense;
         scanerNewObj = await Dynamsoft.DBR.BarcodeScanner.createInstance();
@@ -181,7 +182,7 @@ async function showScaner() {
         document.getElementById('dce-video-container').style.display = 'block';
         await scanerNewObj.show();
         document.getElementById('dce-bg-loading').classList.add('hide');
-      }
+      // }
     } catch (e) {
       let err;
 
