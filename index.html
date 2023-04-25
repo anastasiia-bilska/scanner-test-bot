@@ -1,186 +1,67 @@
 <!DOCTYPE html>
 <html lang="uk">
-
-<head>
-	<title>Взаємодія препаратів</title>
-
-	<meta charset="utf-8">
-	<meta name="author" content="github.com/zakandaiev">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
-
-	<link rel="shortcut icon" type="image/x-icon" sizes="any" href="/favicon.ico">
-
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
-
-	<link rel="stylesheet" href="/css/main.css?v=0.6.0">
-
-	<script src="/js/setting.js?v=0.6.0" defer></script>
-	<script src="/js/main.js?v=0.6.0" defer></script>
-</head>
-
-<body>
-	<header id="header" class="header section_offset">
-		<div class="container">
-			<form>
-				<input type="text" name="drug_1" placeholder="* Введіть препарат або діючу речовину" data-lang="input_drug_required" pattern="^(?:[0-9\u0400-\u04FF'-]*[ ]?)*[0-9\u0400-\u04FF'ʼ-]*(?:[ ]*)$" title="Будь ласка, введіть запит кирилицею" required>
-				<input type="text" name="drug_2" placeholder="Введіть препарат або діючу речовину" data-lang="input_drug" pattern="^(?:[0-9\u0400-\u04FF'-]*[ ]?)*[0-9\u0400-\u04FF'ʼ-]*(?:[ ]*)$" title="Будь ласка, введіть запит кирилицею">
-				<button type="submit" disabled class="btn btn_primary btn_fit" data-lang="check" data-show="default">Перевірити</button>
-				<button type="reset" class="btn btn_primary btn_fit hidden" data-lang="clear" data-show="clear">Очистити</button>
-				<button type="button" class="btn btn_fit text-underline p-b-0 p-t-3" data-example>
-					<span data-lang="show_example" data-show="default">Переглянути приклад</span>
-					<span data-lang="show_another_example" data-show="another_example" class="hidden">Інший приклад</span>
-				</button>
-			</form>
-		</div>
-	</header>
-
-	<main class="page-content">
-
-
-<section class="section tabs hidden">
-	<div class="scrollable-tabs-container">
-    <div
-      class="
-        scrollable-tabs-container__indicator
-        scrollable-tabs-container__indicator--left
-      "
-    >
-      <svg
-        class="scrollable-tabs-container__icon"
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke-width="1.5"
-        stroke="currentColor"
-        class="w-6 h-6"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="M15.75 19.5L8.25 12l7.5-7.5"
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Сканер QR кодів | Аптека 9-1-1</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.4/html5-qrcode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dynamsoft-javascript-barcode@9.6.2/dist/dbr.js"></script>
+    <!-- <style>{{{payload.style}}}</style> -->
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body onload="showScaner()" class="body">
+    <header class="header">
+      <h1>
+        <img
+          src="/logoScanner.svg"
+          alt="Аптека 9-1-1 | Сканер QR-кодів"
+          class="header__logo"
         />
-      </svg>
-    </div>
+      </h1>
+    </header>
+    <main>
+      <p class="instruction" id="instruction">
+        Наведіть камеру на QR-код таким чином, щоб він опинився по центру
+        квадрата-сканера 🎯
+      </p>
+      <div class="scanner hide" id="scanner-HTML5">
+        <div id="reader-wrap" class="reader-wrap">
+          <div id="loader-wrapper" class="loader__wrapper">
+            <svg class="loader"></svg>
+          </div>
+          <div id="reader" class="reader hide"></div>
+        </div>
+      </div>
 
-		<div class="tabs__wrapper">
-			<button class="tabs__item active" data-target="tab-drugs">
-				<svg class="tabs__icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_168_895)"><path d="M3.75012 10.4168L10.4168 3.75012C11.1903 2.97657 12.2395 2.54199 13.3334 2.54199C14.4274 2.54199 15.4766 2.97657 16.2501 3.75012C17.0237 4.52366 17.4582 5.57282 17.4582 6.66678C17.4582 7.76074 17.0237 8.8099 16.2501 9.58345L9.58345 16.2501C8.8099 17.0237 7.76074 17.4582 6.66678 17.4582C5.57282 17.4582 4.52366 17.0237 3.75012 16.2501C2.97657 15.4766 2.54199 14.4274 2.54199 13.3334C2.54199 12.2395 2.97657 11.1903 3.75012 10.4168" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M7.0835 7.0835L12.9168 12.9168" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></g><defs><clipPath id="clip0_168_895"><rect width="20" height="20"/></clipPath></defs></svg>
-				<span data-lang="drug">Лікарський засіб</span>
-			</button>
-			<button class="tabs__item" data-target="tab-alcohol">
-				<svg class="tabs__icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_168_901)"><path d="M6.6665 17.5H13.3332" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 12.5V17.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M14.1667 2.5L15 8.33333C15 10.8433 12.7617 12.5 10 12.5C7.23833 12.5 5 10.8433 5 8.33333L5.83333 2.5H14.1667Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 8.33333C5.72123 7.79241 6.59846 7.5 7.5 7.5C8.40154 7.5 9.27877 7.79241 10 8.33333C10.7212 8.87426 11.5985 9.16667 12.5 9.16667C13.4015 9.16667 14.2788 8.87426 15 8.33333" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></g><defs><clipPath id="clip0_168_901"><rect width="20" height="20" /></clipPath></defs></svg>
-				<span data-lang="alcohol">Алкоголь</span>
-			</button>
-			<button class="tabs__item" data-target="tab-food">
-				<svg class="tabs__icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_168_3221)"><path d="M3.81213 7.5C3.71889 7.4998 3.62688 7.47874 3.54283 7.43836C3.45879 7.39799 3.38484 7.33932 3.32641 7.26666C3.26799 7.194 3.22656 7.10919 3.20516 7.01844C3.18376 6.92768 3.18294 6.8333 3.20275 6.74219C3.70275 4.33594 6.55431 2.5 9.99963 2.5C13.4449 2.5 16.2965 4.33594 16.7965 6.74219C16.8163 6.8333 16.8155 6.92768 16.7941 7.01844C16.7727 7.10919 16.7313 7.194 16.6728 7.26666C16.6144 7.33932 16.5405 7.39799 16.4564 7.43836C16.3724 7.47874 16.2804 7.4998 16.1871 7.5H3.81213Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M16.25 13.125V14.375C16.25 15.038 15.9866 15.6739 15.5178 16.1428C15.0489 16.6116 14.413 16.875 13.75 16.875H6.25C5.58696 16.875 4.95107 16.6116 4.48223 16.1428C4.01339 15.6739 3.75 15.038 3.75 14.375V13.125" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.1875 13.75L5.3125 12.5L8.4375 13.75L11.5625 12.5L14.6875 13.75L17.8125 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M1.875 10H18.125" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></g><defs><clipPath id="clip0_168_3221"><rect width="20" height="20" /></clipPath></defs></svg>
-				<span data-lang="food">Їжа</span>
-			</button>
-			<button class="tabs__item" data-target="tab-caffeine">
-				<svg class="tabs__icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16.317 5.66943H3.68164L3.90329 3.17131C3.92944 2.87527 4.17724 2.64837 4.47451 2.64837H4.87276L5.01118 1.59922C5.0562 1.2561 5.34825 0.999828 5.6942 0.999828H14.3045C14.6504 0.999828 14.9425 1.2561 14.9879 1.59922L15.1259 2.64837H15.5246C15.8214 2.64837 16.0692 2.87527 16.0954 3.17131L16.317 5.66943Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/><path d="M15.0718 2.64844H4.87305" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/><path d="M11.6052 10.3583C10.8911 9.69338 9.77312 9.73336 9.10825 10.4475L8.30567 11.3096C7.64079 12.0238 7.68078 13.1417 8.39495 13.8066C9.10915 14.4715 10.2271 14.4315 10.8919 13.7174L11.6945 12.8553C12.3594 12.1411 12.3194 11.0231 11.6052 10.3583Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/><path d="M11 11L9 13" stroke="currentColor" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/><path d="M10.7411 19H6.30528C5.98425 19 5.71498 18.7583 5.6801 18.4394L4.28711 5.66943H15.7123L14.3193 18.4394C14.2844 18.7583 14.0152 19 13.6944 19H12.1678" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/></svg>
-				<span data-lang="caffeine">Кофеїн</span>
-			</button>
-      <button class="tabs__item" data-target="tab-instructions">
-        <svg class="tabs__icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 10C2 11.0506 2.20693 12.0909 2.60896 13.0615C3.011 14.0321 3.60028 14.914 4.34315 15.6569C5.08601 16.3997 5.96793 16.989 6.93853 17.391C7.90914 17.7931 8.94943 18 10 18C11.0506 18 12.0909 17.7931 13.0615 17.391C14.0321 16.989 14.914 16.3997 15.6569 15.6569C16.3997 14.914 16.989 14.0321 17.391 13.0615C17.7931 12.0909 18 11.0506 18 10C18 7.87827 17.1571 5.84344 15.6569 4.34315C14.1566 2.84285 12.1217 2 10 2C7.87827 2 5.84344 2.84285 4.34315 4.34315C2.84285 5.84344 2 7.87827 2 10Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 7.3335H10.0083" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M9.11133 10H10.0002V13.5556H10.8891" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <span data-lang="instructions">Від виробника</span>
+      <div class="scanner hide" id="scanner-dynamsoft">
+        <div id="app" class="app">
+          <div id="barcode-scaner" class="barcode-scaner">
+            <div id="dce-bg-loading" class="dce-bg-loading hide">
+              <svg class="loader"></svg>
+            </div>
+
+            <div class="dce-scanarea">
+              <div class="dce-scanlight"></div>
+            </div>
+
+            <div id="dce-video-container" class="dce-video-container"></div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer">
+      <div class="unsuccessful">
+        <h2 class="unsuccessful__title">Не виходить?</h2>
+        <p class="unsuccessful__instruction">Спробуйте інший сканер 👇</p>
+      </div>
+      <button onclick="changeScaner()" id="switcher" class="switcher">
+        Змінити сканер
       </button>
-		</div>
-
-    <div
-      class="
-        scrollable-tabs-container__indicator
-        scrollable-tabs-container__indicator--right
-      "
-    >
-      <svg
-        class="scrollable-tabs-container__icon"
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke-width="1.5"
-        stroke="currentColor"
-        class="w-6 h-6"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="M8.25 4.5l7.5 7.5-7.5 7.5"
-        />
-      </svg>
-    </div>
-	</div>
-</section>
-
-<section id="tab-loading" class="section section_offset hidden">
-	<div class="container text-center">
-		<h2 class="section__title" data-show="default" data-lang="is_searching">Пошук інформації</h2>
-		<h2 class="section__title hidden" data-show="translating" data-lang="is_translating">Перекладаємо</h2>
-		<progress class="loader"></progress>
-		<div class="section__content"></div>
-	</div>
-</section>
-
-<section id="tab-drugs" class="section section_offset">
-	<div class="container">
-		<h2 class="section__title text-center" data-show="default" data-lang="tab_input_drugs">Введіть назви препаратів або діючі речовини у рядках вище, щоб перевірити взаємодію.</h2>
-		<h2 class="section__title text-center hidden" data-show="input-drug2" data-lang="tab_input_second_drug">Введіть другий препарат або діючу речовину, щоб перевірити взаємодію препаратів.</h2>
-		<h2 class="section__title text-center hidden" data-show="not-found" data-lang="tab_not_fount_drugs">Не знайдено інформацію щодо взаємодії препаратів.</h2>
-		<div class="section__content"></div>
-	</div>
-</section>
-
-<section id="tab-alcohol" class="section section_offset hidden">
-	<div class="container">
-		<h2 class="section__title text-center" data-show="default" data-lang="tab_input_drugs">Введіть назви препаратів або діючі речовини у рядках вище, щоб перевірити взаємодію.</h2>
-		<h2 class="section__title text-center hidden" data-show="not-found" data-lang="tab_not_fount_alcohol">Не знайдено інформацію щодо взаємодії з алкоголем.</h2>
-		<div class="section__content"></div>
-	</div>
-</section>
-
-<section id="tab-food" class="section section_offset hidden">
-	<div class="container">
-		<h2 class="section__title text-center" data-show="default" data-lang="tab_input_drugs">Введіть назви препаратів або діючі речовини у рядках вище, щоб перевірити взаємодію.</h2>
-		<h2 class="section__title text-center hidden" data-show="not-found" data-lang="tab_not_fount_food">Не знайдено інформацію щодо взаємодії з їжею.</h2>
-		<div class="section__content"></div>
-	</div>
-</section>
-
-<section id="tab-caffeine" class="section section_offset hidden">
-	<div class="container">
-		<h2 class="section__title text-center" data-show="default" data-lang="tab_input_drugs">Введіть назви препаратів або діючі речовини у рядках вище, щоб перевірити взаємодію.</h2>
-		<h2 class="section__title text-center hidden" data-show="not-found" data-lang="tab_not_fount_caffeine">Не знайдено інформацію щодо взаємодії з кофеїном.</h2>
-		<div class="section__content"></div>
-	</div>
-</section>
-
-<section id="tab-instructions" class="section section_offset hidden">
-	<div class="container">
-		<h2 class="section__title text-center" data-show="default" data-lang="tab_input_instructions">Введіть! назви! препаратів! або діючі речовини у рядках вище, щоб перевірити взаємодію.</h2>
-		<h2 class="section__title text-center hidden" data-show="not-found" data-lang="tab_not_fount_instructions">Не! знайдено інструкцій.</h2>
-		<div class="section__content"></div>
-	</div>
-</section>
-
-
-	</main>
-
-	<footer id="footer" class="footer">
-		<div class="container">
-			<div class="footer__wrapper">
-				<span class="footer__logo">
-					<img src="/img/logo.svg" alt="Логотип">
-					<span data-lang="logo">Взаємодія<br>препаратів</span>
-				</span>
-				<button type="button" disabled data-langswitcher class="btn btn_primary btn_sm btn_with-icon">
-					<svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_168_846)"><path d="M3.8335 4.7915H10.5418" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M8.62516 2.875V4.79167C8.62516 9.02558 6.47945 12.4583 3.8335 12.4583" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M4.79151 8.625C4.78863 10.6797 7.62051 12.3702 11.2123 12.4583" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M11.5 19.1665L15.3333 10.5415L19.1667 19.1665" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M18.304 17.25H12.3623" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></g><defs><clipPath id="clip0_168_846"><rect width="23" height="23"/></clipPath></defs></svg>
-					<span data-lang="change_lang">Змінити мову</span>
-				</button>
-			</div>
-		</div>
-	</footer>
-</body>
-
+    </footer>
+    <!-- <script>{{{payload.script}}}</script> -->
+    <script src="/app.js"></script>
+  </body>
 </html>
-

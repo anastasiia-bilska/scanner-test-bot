@@ -1,12 +1,13 @@
 'use strict';
 
 const urlParams = new URLSearchParams(window.location.search);
-const channel = urlParams.get('channel');
+// const channel = urlParams.get('channel');
+let channel = 'telegram';
 const phone = urlParams.get('phone');
 
-if (channel === 'telegram') {
+// if (channel === 'telegram') {
   window.Telegram.WebApp.expand();
-}
+// }
 
 const instructionHeight = document.getElementById('instruction').offsetHeight;
 document.documentElement.style.setProperty(
@@ -25,6 +26,10 @@ if ((isAndroid && channel === 'viber') || (isIOS && channel === 'telegram')) {
 
 let scanerCurrent = 'old';
 let scanerNewObj, scanerOldObj, lastCode;
+
+if (isAndroid && channel === 'telegram') {
+  scanerCurrent = 'new';
+}
 
 const sleep = (ms) => {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -244,6 +249,7 @@ function sendDataToApi(code) {
     lastCode = null;
   }, 1500);
 
+  // отправляем данные на api - новий
   // let xhr = new XMLHttpRequest();
   // xhr.open('POST', {{{msg.serverUrl}}}'/QRres', true);
   // xhr.setRequestHeader('Content-Type', 'application/json');
@@ -267,22 +273,9 @@ function sendDataToApi(code) {
   //   );
   // }
 
-  // отправляем данные на api - початковий
-  // let xhr = new XMLHttpRequest();
-  // xhr.open('POST', {{{msg.serverUrl}}}'/QRres', true);
-  // xhr.setRequestHeader('Content-Type', 'application/json');
-  // xhr.send(
-  //   JSON.stringify({
-  //     text: code,
-  //     channel: `{{{payload.channel}}}`,
-  //     phone: `{{{payload.phone}}}`,
-  //     user: window.Telegram.WebApp.initDataUnsafe.user,
-  //   })
-  // );
-
   setTimeout(redirect, 500);
 
-  // return;
+  return;
 }
 
 function redirect() {
