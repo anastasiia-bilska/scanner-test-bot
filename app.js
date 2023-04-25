@@ -1,8 +1,8 @@
 'use strict';
 
 const urlParams = new URLSearchParams(window.location.search);
-const channel = urlParams.get('channel');
-// let channel = 'telegram';
+// const channel = urlParams.get('channel');
+let channel = 'telegram';
 const phone = urlParams.get('phone');
 
 // if (channel === 'telegram') {
@@ -56,6 +56,8 @@ async function showScaner() {
     document.getElementById('scanner-HTML5').classList.remove('hide');
     try {
       document.getElementById('loader-wrapper').classList.remove('hide');
+
+      scanerOldObj.resume();
 
       setTimeout(() => {
         if (
