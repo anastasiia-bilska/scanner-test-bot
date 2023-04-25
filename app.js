@@ -2,7 +2,7 @@
 
 const urlParams = new URLSearchParams(window.location.search);
 // const channel = urlParams.get('channel');
-let channel = 'telegram';
+const channel = 'telegram';
 const phone = urlParams.get('phone');
 
 // if (channel === 'telegram') {
@@ -22,11 +22,11 @@ const isIOS = /Iphone/i.test(navigator.userAgent);
 
 const footer = document.getElementById('footer');
 
-if ((isAndroid && channel === 'viber') || (isIOS && channel === 'telegram')) {
-  footer.classList.add('hide');
-} else {
-  footer.classList.remove('hide');
-}
+// if ((isAndroid && channel === 'viber') || (isIOS && channel === 'telegram')) {
+//   footer.classList.add('hide');
+// } else {
+//   footer.classList.remove('hide');
+// }
 
 let scanerCurrent = 'new';
 
