@@ -15,9 +15,9 @@ document.documentElement.style.setProperty(
   `${instructionHeight}px`
 );
 
-// const isAndroid = /Android/i.test(navigator.userAgent);
+const isAndroid = /Android/i.test(navigator.userAgent);
 // const isAndroid = true;
-const isAndroid = false;
+// const isAndroid = false;
 const isIOS = /Iphone/i.test(navigator.userAgent);
 
 const footer = document.getElementById('footer');
@@ -28,7 +28,7 @@ if ((isAndroid && channel === 'viber') || (isIOS && channel === 'telegram')) {
   footer.classList.remove('hide');
 }
 
-let scanerCurrent;
+let scanerCurrent = 'new';
 
 if (isAndroid && channel === 'telegram') {
   scanerCurrent = 'new';
