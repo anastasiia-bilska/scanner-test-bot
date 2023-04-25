@@ -195,6 +195,7 @@ async function showScaner() {
       }
 
       if (scanerNewObj && scanerNewObj.hide) {
+        alert('inside');
         scanerNewObj.hide();
         scanerNewObj.destroyContext();
         scanerNewObj = null;
