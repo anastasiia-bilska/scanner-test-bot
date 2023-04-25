@@ -16,24 +16,33 @@ document.documentElement.style.setProperty(
 );
 
 const isAndroid = /Android/i.test(navigator.userAgent);
+// const isAndroid = true;
+// const isAndroid = false;
 const isIOS = /Iphone/i.test(navigator.userAgent);
 
 const footer = document.getElementById('footer');
 
 if ((isAndroid && channel === 'viber') || (isIOS && channel === 'telegram')) {
   footer.classList.add('hide');
+} else {
+  footer.classList.remove('hide');
 }
 
-let scanerCurrent = 'old';
-let scanerNewObj, scanerOldObj, lastCode;
+let scanerCurrent;
 
 if (isAndroid && channel === 'telegram') {
   scanerCurrent = 'new';
+} else {
+  scanerCurrent = 'old';
 }
+
+let scanerNewObj, scanerOldObj, lastCode;
 
 const sleep = (ms) => {
   return new Promise((resolve) => setTimeout(resolve, ms));
 };
+
+window.console.log(scanerCurrent)
 
 // запуск сканера
 async function showScaner() {
