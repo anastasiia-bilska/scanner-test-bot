@@ -28,7 +28,7 @@ if ((isAndroid && channel === 'viber') || (isIOS && channel === 'telegram')) {
   footer.classList.remove('hide');
 }
 
-let scanerCurrent = 'new';
+let scanerCurrent = 'old';
 
 // if (isAndroid && channel === 'telegram') {
 //   scanerCurrent = 'new';
