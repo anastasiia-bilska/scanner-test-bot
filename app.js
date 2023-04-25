@@ -47,81 +47,81 @@ window.console.log(scanerCurrent)
 // запуск сканера
 async function showScaner() {
   //запуск старого сканера
-  if (scanerCurrent === 'old') {
-    console.log('START OLD');
-    lastCode = null;
-    document.getElementById('scanner-dynamsoft').classList.add('hide');
-    document.getElementById('scanner-HTML5').classList.remove('hide');
-    try {
-      document.getElementById('loader-wrapper').classList.remove('hide');
+  // if (scanerCurrent === 'old') {
+  //   console.log('START OLD');
+  //   lastCode = null;
+  //   document.getElementById('scanner-dynamsoft').classList.add('hide');
+  //   document.getElementById('scanner-HTML5').classList.remove('hide');
+  //   try {
+  //     document.getElementById('loader-wrapper').classList.remove('hide');
 
-      setTimeout(() => {
-        if (
-          scanerOldObj &&
-          scanerOldObj.getState() === Html5QrcodeScannerState.PAUSED
-        ) {
-          scanerOldObj.resume();
-        } else {
-          if (
-            scanerOldObj &&
-            scanerOldObj.getState() === Html5QrcodeScannerState.SCANNING
-          ) {
-            scanerOldObj.stop();
-          }
+  //     setTimeout(() => {
+  //       if (
+  //         scanerOldObj &&
+  //         scanerOldObj.getState() === Html5QrcodeScannerState.PAUSED
+  //       ) {
+  //         scanerOldObj.resume();
+  //       } else {
+  //         if (
+  //           scanerOldObj &&
+  //           scanerOldObj.getState() === Html5QrcodeScannerState.SCANNING
+  //         ) {
+  //           scanerOldObj.stop();
+  //         }
 
-          window.console.log('CREATE OLD');
+  //         window.console.log('CREATE OLD');
 
-          scanerOldObj = new Html5Qrcode('reader', {
-            experimentalFeatures: { useBarCodeDetectorIfSupported: false },
-          });
+  //         scanerOldObj = new Html5Qrcode('reader', {
+  //           experimentalFeatures: { useBarCodeDetectorIfSupported: false },
+  //         });
 
-          scanerOldObj
-            .start(
-              { facingMode: 'environment' },
-              {
-                fps: 15,
-                qrbox: 225,
-                formatsToSupport: [Html5QrcodeSupportedFormats.QR_CODE],
-                disableFlip: false,
-                aspectRatio: 1.0,
-                supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA],
-              },
-              scanerResult
-            )
-            .catch(function (e) {
-              console.log(e);
-            });
-        }
+  //         scanerOldObj
+  //           .start(
+  //             { facingMode: 'environment' },
+  //             {
+  //               fps: 15,
+  //               qrbox: 225,
+  //               formatsToSupport: [Html5QrcodeSupportedFormats.QR_CODE],
+  //               disableFlip: false,
+  //               aspectRatio: 1.0,
+  //               supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA],
+  //             },
+  //             scanerResult
+  //           )
+  //           .catch(function (e) {
+  //             console.log(e);
+  //           });
+  //       }
 
-        document.getElementById('loader-wrapper').classList.add('hide');
-        document.getElementById('reader').classList.remove('hide');
-      }, 1500);
-    } catch (e) {
-      console.log(e.message || e);
+  //       document.getElementById('loader-wrapper').classList.add('hide');
+  //       document.getElementById('reader').classList.remove('hide');
+  //     }, 1500);
+  //   } catch (e) {
+  //     console.log(e.message || e);
 
-      if (scanerOldObj) {
-        if (scanerOldObj.getState() === Html5QrcodeScannerState.SCANNING) {
-          scanerOldObj.stop();
-          scanerOldObj = null;
-        }
+  //     if (scanerOldObj) {
+  //       if (scanerOldObj.getState() === Html5QrcodeScannerState.SCANNING) {
+  //         scanerOldObj.stop();
+  //         scanerOldObj = null;
+  //       }
 
-        if (channel === 'telegram') {
-          window.Telegram.WebApp.showAlert(
-            'Щось пішло не так! Змінюємо сканер...',
-            () => {
-              scanerCurrent = 'new';
-              showScaner();
-            }
-          );
-        } else {
-          alert('Щось пішло не так! Змінюємо сканер...');
-          scanerCurrent = 'new';
-          showScaner();
-        }
-      }
-    }
-    //запуск нового сканера
-  } else if (scanerCurrent === 'new') {
+  //       if (channel === 'telegram') {
+  //         window.Telegram.WebApp.showAlert(
+  //           'Щось пішло не так! Змінюємо сканер...',
+  //           () => {
+  //             scanerCurrent = 'new';
+  //             showScaner();
+  //           }
+  //         );
+  //       } else {
+  //         alert('Щось пішло не так! Змінюємо сканер...');
+  //         scanerCurrent = 'new';
+  //         showScaner();
+  //       }
+  //     }
+  //   }
+  //   //запуск нового сканера
+  // } else if (scanerCurrent === 'new') {
     window.console.log('START NEW');
     document.getElementById('scanner-HTML5').classList.add('hide');
     document.getElementById('reader').classList.add('hide');
@@ -216,7 +216,7 @@ async function showScaner() {
       }
     }
   }
-}
+// }
 
 // смена сканера
 async function changeScaner() {
