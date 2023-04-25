@@ -2,7 +2,7 @@
 
 const urlParams = new URLSearchParams(window.location.search);
 // const channel = urlParams.get('channel');
-// let channel = 'telegram';
+let channel = 'telegram';
 const phone = urlParams.get('phone');
 
 // if (channel === 'telegram') {
