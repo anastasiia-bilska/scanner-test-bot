@@ -199,14 +199,14 @@ async function showScaner() {
 
       if (channel === 'telegram') {
         window.Telegram.WebApp.showAlert(
-          'Щось пішло не так... Повертаємось на попередній сканер',
+          'Щось пішло не так... Змінюємо сканер',
           () => {
             scanerCurrent = 'old';
             showScaner();
           }
         );
       } else {
-        alert('Щось пішло не так... Повертаємось на попередній сканер');
+        alert('Щось пішло не так... Змінюємо сканер');
         scanerCurrent = 'old';
         showScaner();
       }
