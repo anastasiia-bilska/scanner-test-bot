@@ -171,7 +171,7 @@ async function showScaner() {
           rs.region.regionTop = 5;
           rs.region.regionBottom = 95;
           rs.region.regionMeasuredByPercentage = 1;
-          rs.setTimeout = 1000000000;
+          rs.timeout = 1000000000;
           await scanerNewObj.updateRuntimeSettings(rs);
         };
 
