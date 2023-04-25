@@ -44,6 +44,8 @@ const sleep = (ms) => {
 
 window.console.log(scanerCurrent)
 
+showScaner();
+
 // запуск сканера
 async function showScaner() {
   //запуск старого сканера
