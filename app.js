@@ -51,6 +51,7 @@ function showScaner() {
     {
       text: 'Помістіть QR-код у центр екрану 🎯',
     },
+    () => { closeScanQrPopup() }
   );
   window.Telegram.WebApp.onEvent('qrTextReceived', scanerResult);
 }
@@ -251,7 +252,7 @@ function scanerResult(code) {
     return;
   }
 
-  alert(code);
+  alert(code.data);
 
   console.log(code);
 
