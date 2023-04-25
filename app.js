@@ -1,8 +1,8 @@
 'use strict';
 
 const urlParams = new URLSearchParams(window.location.search);
-// const channel = urlParams.get('channel');
-let channel = 'telegram';
+const channel = urlParams.get('channel');
+// let channel = 'telegram';
 const phone = urlParams.get('phone');
 
 // if (channel === 'telegram') {
@@ -30,11 +30,11 @@ if ((isAndroid && channel === 'viber') || (isIOS && channel === 'telegram')) {
 
 let scanerCurrent = 'new';
 
-if (isAndroid && channel === 'telegram') {
-  scanerCurrent = 'new';
-} else {
-  scanerCurrent = 'old';
-}
+// if (isAndroid && channel === 'telegram') {
+//   scanerCurrent = 'new';
+// } else {
+//   scanerCurrent = 'old';
+// }
 
 let scanerNewObj, scanerOldObj, lastCode;
 
@@ -172,7 +172,6 @@ async function showScaner() {
           rs.region.regionTop = 5;
           rs.region.regionBottom = 95;
           rs.region.regionMeasuredByPercentage = 1;
-          rs.timeout = 20000;
           await scanerNewObj.updateRuntimeSettings(rs);
         };
 
