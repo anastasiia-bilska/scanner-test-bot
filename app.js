@@ -198,7 +198,7 @@ async function showScaner() {
         );
         await scanerNewObj.setResolution(400, 400);
         document.getElementById('dce-bg-loading').classList.add('hide');
-        await scanerNewObj.show();
+        scanerNewObj.show();
         document.getElementById('dce-video-container').style.display = 'block';
       }
     } catch (e) {
