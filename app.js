@@ -28,7 +28,7 @@ const footer = document.getElementById('footer');
 //   footer.classList.remove('hide');
 // }
 
-let scanerCurrent = 'new';
+let scanerCurrent = 'old';
 
 // if (isAndroid && channel === 'telegram') {
 //   scanerCurrent = 'new';
@@ -65,6 +65,7 @@ setTimeout(() => {
 async function showScaner() {
   //запуск старого сканера
   if (scanerCurrent === 'old') {
+    changeScaner()
     console.log('START OLD');
     lastCode = null;
     document.getElementById('scanner-dynamsoft').classList.add('hide');
