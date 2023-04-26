@@ -45,9 +45,9 @@ const sleep = (ms) => {
 
 window.console.log(scanerCurrent);
 
-setTimeout(() => {
+// setTimeout(() => {
   showScaner();
-}, 5000);
+// }, 5000);
 
 // function showScaner() {
 //   window.Telegram.WebApp.showScanQrPopup(
