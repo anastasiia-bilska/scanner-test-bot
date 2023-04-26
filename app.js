@@ -501,8 +501,8 @@ async function showScaner() {
       }
     } catch (e) {
       let err;
-
-      alert(e.message)
+      
+      showScaner();
 
       if (e.message.includes('network connection error')) {
         err = 'Failed to connect to Dynamsoft License Server';
