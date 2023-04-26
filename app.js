@@ -47,7 +47,7 @@ window.console.log(scanerCurrent);
 
 setTimeout(() => {
   showScaner();
-}, 1000);
+}, 5000);
 
 // function showScaner() {
 //   window.Telegram.WebApp.showScanQrPopup(
