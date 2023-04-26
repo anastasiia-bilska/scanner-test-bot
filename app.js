@@ -502,12 +502,12 @@ async function showScaner() {
     } catch (e) {
       let err;
 
-  //     if (e.message.includes('network connection error')) {
-  //       err = 'Failed to connect to Dynamsoft License Server';
-  //     } else {
-  //       err = e.message || e;
-  //       window.console.log(err);
-  //     }
+      if (e.message.includes('network connection error')) {
+        err = 'Failed to connect to Dynamsoft License Server';
+      } else {
+        err = e.message || e;
+        window.console.log(err);
+      }
 
       if (scanerNewObj && scanerNewObj.hide) {
         scanerNewObj.hide();
@@ -515,21 +515,19 @@ async function showScaner() {
         scanerNewObj = null;
       }
 
-      showScaner();
-
-  //     if (channel === 'telegram') {
-  //       window.Telegram.WebApp.showAlert(
-  //         'Щось пішло не так... Повертаємось на попередній сканер',
-  //         () => {
-  //           scanerCurrent = 'old';
-  //           showScaner();
-  //         }
-  //       );
-  //     } else {
-  //       alert('Щось пішло не так... Повертаємось на попередній сканер');
-  //       scanerCurrent = 'old';
-  //       showScaner();
-  //     }
+      if (channel === 'telegram') {
+        window.Telegram.WebApp.showAlert(
+          'Щось пішло не так... Повертаємось на попередній сканер',
+          () => {
+            scanerCurrent = 'old';
+            showScaner();
+          }
+        );
+      } else {
+        alert('Щось пішло не так... Повертаємось на попередній сканер');
+        scanerCurrent = 'old';
+        showScaner();
+      }
     }
   }
 }
