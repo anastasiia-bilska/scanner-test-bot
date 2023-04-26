@@ -65,8 +65,6 @@ window.console.log(scanerCurrent);
 async function showScaner() {
   //запуск старого сканера
   if (scanerCurrent === 'old') {
-    scanerCurrent = 'new';
-    showScaner();
     console.log('START OLD');
     lastCode = null;
     document.getElementById('scanner-dynamsoft').classList.add('hide');
