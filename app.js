@@ -457,8 +457,8 @@ async function showScaner() {
         //     Dynamsoft.DBR.BarcodeReader.license = scanerNewLicense;
         scanerNewObj = await Dynamsoft.DBR.BarcodeScanner.createInstance();
         scanerNewObj.hide();
-        scanerNewObj = null;
         scanerNewObj.destroyContext();
+        scanerNewObj = null;
         scanerNewObj = await Dynamsoft.DBR.BarcodeScanner.createInstance();
 
         let settings = await scanerNewObj.getRuntimeSettings();
