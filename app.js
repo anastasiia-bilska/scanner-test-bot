@@ -530,8 +530,8 @@ async function showScaner() {
   //       scanerCurrent = 'old';
   //       showScaner();
   //     }
-  //   }
-  // }
+    }
+  }
 }
 
 // смена сканера
