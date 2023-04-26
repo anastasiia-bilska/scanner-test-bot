@@ -448,9 +448,6 @@ async function showScaner() {
     document.getElementById('scanner-dynamsoft').classList.remove('hide');
     try {
       document.getElementById('dce-bg-loading').classList.remove('hide');
-      // scanerNewObj.hide();
-      scanerNewObj.destroyContext();
-      scanerNewObj = null;
       window.console.log(scanerNewObj);
       if (scanerNewObj) {
         await scanerNewObj.show();
@@ -458,6 +455,10 @@ async function showScaner() {
       } else {
         // if ( !Dynamsoft.DBR.BarcodeReader.license )
         //     Dynamsoft.DBR.BarcodeReader.license = scanerNewLicense;
+        scanerNewObj = await Dynamsoft.DBR.BarcodeScanner.createInstance();
+        scanerNewObj.hide();
+        scanerNewObj = null;
+        scanerNewObj.destroyContext();
         scanerNewObj = await Dynamsoft.DBR.BarcodeScanner.createInstance();
 
         let settings = await scanerNewObj.getRuntimeSettings();
