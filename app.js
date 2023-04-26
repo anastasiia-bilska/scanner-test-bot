@@ -333,9 +333,9 @@ const urlParams = new URLSearchParams(window.location.search);
 const channel = urlParams.get('channel');
 const phone = urlParams.get('phone');
 
-if (channel === 'telegram') {
+// if (channel === 'telegram') {
   window.Telegram.WebApp.expand();
-}
+// }
 
 const instructionHeight = document.getElementById('instruction').offsetHeight;
 document.documentElement.style.setProperty(
@@ -358,6 +358,8 @@ let scanerNewObj, scanerOldObj, lastCode;
 const sleep = (ms) => {
   return new Promise((resolve) => setTimeout(resolve, ms));
 };
+
+showScaner();
 
 // запуск сканера
 async function showScaner() {
