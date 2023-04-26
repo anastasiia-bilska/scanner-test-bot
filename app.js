@@ -197,9 +197,9 @@ async function showScaner() {
           document.getElementById('barcode-scaner')
         );
         await scanerNewObj.setResolution(400, 400);
-        document.getElementById('dce-bg-loading').classList.add('hide');
-        scanerNewObj.show();
         document.getElementById('dce-video-container').style.display = 'block';
+        await scanerNewObj.show();
+        document.getElementById('dce-bg-loading').classList.add('hide');
       }
     } catch (e) {
       let err;
