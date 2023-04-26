@@ -193,13 +193,19 @@ async function showScaner() {
           await scanerNewObj.updateRuntimeSettings(rs);
         };
 
+        alert('onplayed')
+
         await scanerNewObj.setUIElement(
           document.getElementById('barcode-scaner')
         );
+
+        alert('setui');
         await scanerNewObj.setResolution(400, 400);
+        alert('setres');
         document.getElementById('dce-video-container').style.display = 'block';
-        await scanerNewObj.show();
         document.getElementById('dce-bg-loading').classList.add('hide');
+        await scanerNewObj.show();
+        alert('show');
       }
     } catch (e) {
       let err;
