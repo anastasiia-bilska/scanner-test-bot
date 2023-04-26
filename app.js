@@ -501,8 +501,6 @@ async function showScaner() {
       }
     } catch (e) {
       let err;
-      
-      showScaner();
 
   //     if (e.message.includes('network connection error')) {
   //       err = 'Failed to connect to Dynamsoft License Server';
@@ -511,11 +509,13 @@ async function showScaner() {
   //       window.console.log(err);
   //     }
 
-  //     if (scanerNewObj && scanerNewObj.hide) {
-  //       scanerNewObj.hide();
-  //       scanerNewObj.destroyContext();
-  //       scanerNewObj = null;
-  //     }
+      if (scanerNewObj && scanerNewObj.hide) {
+        scanerNewObj.hide();
+        scanerNewObj.destroyContext();
+        scanerNewObj = null;
+      }
+
+      showScaner();
 
   //     if (channel === 'telegram') {
   //       window.Telegram.WebApp.showAlert(
