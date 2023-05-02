@@ -80,18 +80,21 @@ main {
 }
 
 .reader-wrap {
+  position: relative;
   display: block !important;
   min-height: var(--scanner-size);
 }
 
 .reader {
+  position: absolute;
+  top: 0;
   width: var(--scanner-size);
   margin: 0 auto;
 }
 
 .loader__wrapper {
-  position: relative;
-  height: 220px;
+  /* position: relative; */
+  height: 100%;
 }
 
 .loader {

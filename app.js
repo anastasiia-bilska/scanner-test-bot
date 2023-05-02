@@ -410,7 +410,7 @@ async function showScaner() {
             });
         }
 
-        document.getElementById('loader-wrapper').classList.add('hide');
+        // document.getElementById('loader-wrapper').classList.add('hide');
         document.getElementById('reader').classList.remove('hide');
       }, 1500);
     } catch (e) {
