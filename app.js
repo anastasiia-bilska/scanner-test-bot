@@ -352,7 +352,7 @@ if ((isAndroid && channel === 'viber') || (isIOS && channel === 'telegram')) {
   footer.classList.add('hide');
 }
 
-let scanerCurrent = 'new';
+let scanerCurrent = 'old';
 let scanerNewObj, scanerOldObj, lastCode;
 
 const sleep = (ms) => {
