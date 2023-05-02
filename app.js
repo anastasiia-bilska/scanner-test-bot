@@ -454,7 +454,8 @@ async function showScaner() {
         document.getElementById('dce-bg-loading').classList.add('hide');
       } else {
         // if ( !Dynamsoft.DBR.BarcodeReader.license )
-        //     Dynamsoft.DBR.BarcodeReader.license = scanerNewLicense;
+            // Dynamsoft.DBR.BarcodeReader.license = scanerNewLicense;
+        console.log(Dynamsoft.DBR.BarcodeReader.license);
         scanerNewObj = await Dynamsoft.DBR.BarcodeScanner.createInstance();
 
         let settings = await scanerNewObj.getRuntimeSettings();
