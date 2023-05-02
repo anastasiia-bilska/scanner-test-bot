@@ -333,9 +333,9 @@ const urlParams = new URLSearchParams(window.location.search);
 const channel = urlParams.get('channel');
 const phone = urlParams.get('phone');
 
-// if (channel === 'telegram') {
+if (channel === 'telegram') {
   window.Telegram.WebApp.expand();
-// }
+}
 
 const instructionHeight = document.getElementById('instruction').offsetHeight;
 document.documentElement.style.setProperty(
@@ -343,210 +343,288 @@ document.documentElement.style.setProperty(
   `${instructionHeight}px`
 );
 
-const isAndroid = /Android/i.test(navigator.userAgent);
-const isIOS = /Iphone/i.test(navigator.userAgent);
+// const isAndroid = /Android/i.test(navigator.userAgent);
+// const isIOS = /Iphone/i.test(navigator.userAgent);
 
-const footer = document.getElementById('footer');
+// const footer = document.getElementById('footer');
 
-if ((isAndroid && channel === 'viber') || (isIOS && channel === 'telegram')) {
-  footer.classList.add('hide');
-}
+// if ((isAndroid && channel === 'viber') || (isIOS && channel === 'telegram')) {
+//   footer.classList.add('hide');
+// }
 
-let scanerCurrent = 'old';
-let scanerNewObj, scanerOldObj, lastCode;
+// let scanerCurrent = 'old';
+// let scanerNewObj, scanerOldObj, lastCode;
 
-const sleep = (ms) => {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-};
+// const sleep = (ms) => {
+//   return new Promise((resolve) => setTimeout(resolve, ms));
+// };
 
-showScaner();
+// showScaner();
+
+// // запуск сканера
+// async function showScaner() {
+//   //запуск старого сканера
+//   // if (scanerCurrent === 'old') {
+//     console.log('START OLD');
+//     lastCode = null;
+//     document.getElementById('scanner-dynamsoft').classList.add('hide');
+//     document.getElementById('scanner-HTML5').classList.remove('hide');
+//     try {
+//       document.getElementById('loader-wrapper').classList.remove('hide');
+
+//       setTimeout(() => {
+//         if (
+//           scanerOldObj &&
+//           scanerOldObj.getState() === Html5QrcodeScannerState.PAUSED
+//         ) {
+//           scanerOldObj.resume();
+//         } else {
+//           if (
+//             scanerOldObj &&
+//             scanerOldObj.getState() === Html5QrcodeScannerState.SCANNING
+//           ) {
+//             scanerOldObj.stop();
+//           }
+
+//           window.console.log('CREATE OLD');
+
+//           scanerOldObj = new Html5Qrcode('reader', {
+//             experimentalFeatures: { useBarCodeDetectorIfSupported: false },
+//           });
+
+//           scanerOldObj
+//             .start(
+//               { facingMode: 'environment' },
+//               {
+//                 fps: 15,
+//                 qrbox: 225,
+//                 formatsToSupport: [Html5QrcodeSupportedFormats.QR_CODE],
+//                 disableFlip: false,
+//                 aspectRatio: 1.0,
+//                 supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA],
+//               },
+//               scanerResult
+//             )
+//             .catch(function (e) {
+//               console.log(e);
+//             });
+//         }
+
+//         // document.getElementById('loader-wrapper').classList.add('hide');
+//         document.getElementById('reader').classList.remove('hide');
+//       }, 1500);
+//     } catch (e) {
+//       console.log(e.message || e);
+
+//       if (scanerOldObj) {
+//         if (scanerOldObj.getState() === Html5QrcodeScannerState.SCANNING) {
+//           scanerOldObj.stop();
+//           scanerOldObj = null;
+//         }
+
+//         if (channel === 'telegram') {
+//           window.Telegram.WebApp.showAlert(
+//             'Щось пішло не так! Змінюємо сканер...',
+//             () => {
+//               scanerCurrent = 'new';
+//               showScaner();
+//             }
+//           );
+//         } else {
+//           alert('Щось пішло не так! Змінюємо сканер...');
+//           scanerCurrent = 'new';
+//           showScaner();
+//         }
+//       }
+//     }
+    //запуск нового сканера
+  // } else if (scanerCurrent === 'new') {
+  //   window.console.log('START NEW');
+  //   document.getElementById('scanner-HTML5').classList.add('hide');
+  //   document.getElementById('reader').classList.add('hide');
+
+  //   lastCode = null;
+
+  //   document.getElementById('scanner-dynamsoft').classList.remove('hide');
+  //   try {
+  //     document.getElementById('dce-bg-loading').classList.remove('hide');
+  //     window.console.log(scanerNewObj);
+  //     if (scanerNewObj) {
+  //       await scanerNewObj.show();
+  //       document.getElementById('dce-bg-loading').classList.add('hide');
+  //     } else {
+  //       // if ( !Dynamsoft.DBR.BarcodeReader.license )
+  //           // Dynamsoft.DBR.BarcodeReader.license = scanerNewLicense;
+  //       console.log(Dynamsoft.DBR.BarcodeReader.license);
+  //       scanerNewObj = await Dynamsoft.DBR.BarcodeScanner.createInstance();
+
+  //       let settings = await scanerNewObj.getRuntimeSettings();
+  //       settings.maxAlgorithmThreadCount = 1;
+  //       settings.barcodeFormatIds =
+  //         Dynamsoft.DBR.EnumBarcodeFormat.BF_QR_CODE |
+  //         Dynamsoft.DBR.EnumBarcodeFormat.BF_EAN_13;
+
+  //       await scanerNewObj.updateRuntimeSettings(settings);
+
+  //       let scanSettings = await scanerNewObj.getScanSettings();
+  //       scanSettings.captureAndDecodeInParallel = false;
+  //       scanSettings.intervalTime = 100;
+  //       scanSettings.whenToPlaySoundforSuccessfulRead = 'unique';
+  //       scanSettings.whenToVibrateforSuccessfulRead = 'unique';
+  //       scanSettings.duplicateForgetTime = 1500;
+
+  //       await scanerNewObj.updateScanSettings(scanSettings);
+
+  //       let videoSettings = await scanerNewObj.getVideoSettings();
+  //       videoSettings.video.facingMode = { ideal: 'environment' };
+
+  //       await scanerNewObj.updateVideoSettings(videoSettings);
+
+  //       scanerNewObj.onUniqueRead = scanerResult;
+
+  //       scanerNewObj.onPlayed = async () => {
+  //         let rs = await scanerNewObj.getRuntimeSettings();
+  //         rs.region.regionLeft = 5;
+  //         rs.region.regionRight = 95;
+  //         rs.region.regionTop = 5;
+  //         rs.region.regionBottom = 95;
+  //         rs.region.regionMeasuredByPercentage = 1;
+  //         await scanerNewObj.updateRuntimeSettings(rs);
+  //       };
+
+  //       await scanerNewObj.setUIElement(
+  //         document.getElementById('barcode-scaner')
+  //       );
+  //       await scanerNewObj.setResolution(400, 400);
+  //       document.getElementById('dce-video-container').style.display = 'block';
+  //       await scanerNewObj.show();
+  //       document.getElementById('dce-bg-loading').classList.add('hide');
+  //     }
+  //   } catch (e) {
+  //     let err;
+
+  //     if (e.message.includes('network connection error')) {
+  //       err = 'Failed to connect to Dynamsoft License Server';
+  //     } else {
+  //       err = e.message || e;
+  //       window.console.log(err);
+  //     }
+
+  //     if (scanerNewObj && scanerNewObj.hide) {
+  //       scanerNewObj.hide();
+  //       scanerNewObj.destroyContext();
+  //       scanerNewObj = null;
+  //     }
+
+  //     if (channel === 'telegram') {
+  //       window.Telegram.WebApp.showAlert(
+  //         'Щось пішло не так... Повертаємось на попередній сканер',
+  //         () => {
+  //           scanerCurrent = 'old';
+  //           showScaner();
+  //         }
+  //       );
+  //     } else {
+  //       alert('Щось пішло не так... Повертаємось на попередній сканер');
+  //       scanerCurrent = 'old';
+  //       showScaner();
+  //     }
+  //   }
+  // }
+// }
+
+let scanerObj, lastCode;
 
 // запуск сканера
 async function showScaner() {
-  //запуск старого сканера
-  if (scanerCurrent === 'old') {
-    console.log('START OLD');
-    lastCode = null;
-    document.getElementById('scanner-dynamsoft').classList.add('hide');
-    document.getElementById('scanner-HTML5').classList.remove('hide');
-    try {
-      document.getElementById('loader-wrapper').classList.remove('hide');
+  console.log('START OLD');
+  lastCode = null;
 
-      setTimeout(() => {
-        if (
-          scanerOldObj &&
-          scanerOldObj.getState() === Html5QrcodeScannerState.PAUSED
-        ) {
-          scanerOldObj.resume();
-        } else {
-          if (
-            scanerOldObj &&
-            scanerOldObj.getState() === Html5QrcodeScannerState.SCANNING
-          ) {
-            scanerOldObj.stop();
-          }
+  try {
+    // document.getElementById('loader-wrapper').classList.remove('hide');
 
-          window.console.log('CREATE OLD');
+    if (scanerObj && scanerObj.getState() === Html5QrcodeScannerState.PAUSED) {
+      scanerObj.resume();
+    } else {
+      if (
+        scanerObj &&
+        scanerObj.getState() === Html5QrcodeScannerState.SCANNING
+      ) {
+        scanerObj.stop();
+      }
 
-          scanerOldObj = new Html5Qrcode('reader', {
-            experimentalFeatures: { useBarCodeDetectorIfSupported: false },
-          });
+      window.console.log('CREATE OLD');
 
-          scanerOldObj
-            .start(
-              { facingMode: 'environment' },
-              {
-                fps: 15,
-                qrbox: 225,
-                formatsToSupport: [Html5QrcodeSupportedFormats.QR_CODE],
-                disableFlip: false,
-                aspectRatio: 1.0,
-                supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA],
-              },
-              scanerResult
-            )
-            .catch(function (e) {
-              console.log(e);
-            });
-        }
+      scanerObj = new Html5Qrcode('reader', {
+        experimentalFeatures: { useBarCodeDetectorIfSupported: false },
+      });
 
-        // document.getElementById('loader-wrapper').classList.add('hide');
-        document.getElementById('reader').classList.remove('hide');
-      }, 1500);
-    } catch (e) {
+      scanerObj
+        .start(
+          { facingMode: 'environment' },
+          {
+            fps: 15,
+            qrbox: 225,
+            formatsToSupport: [Html5QrcodeSupportedFormats.QR_CODE],
+            disableFlip: false,
+            aspectRatio: 1.0,
+            supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA],
+          },
+          scanerResult
+        )
+        .catch(function (e) {
+          console.log(e);
+        });
+      // document.getElementById('loader-wrapper').classList.add('hide');
+    }
+  // } catch (e) {
+  //   console.log(e.message || e);
+
+  //   if (scanerObj) {
+  //     if (isScanning) {
+  //       scanerObj.stop();
+  //     }
+
+  //     scanerObj = null;
+  //   }
+  } catch (e) {
       console.log(e.message || e);
 
-      if (scanerOldObj) {
-        if (scanerOldObj.getState() === Html5QrcodeScannerState.SCANNING) {
+      if (scanerObj) {
+        if (scanerObj.getState() === Html5QrcodeScannerState.SCANNING) {
           scanerOldObj.stop();
           scanerOldObj = null;
         }
 
         if (channel === 'telegram') {
           window.Telegram.WebApp.showAlert(
-            'Щось пішло не так! Змінюємо сканер...',
+            'Щось пішло не так! Спробуйте, будь ласка, пізніше',
             () => {
-              scanerCurrent = 'new';
               showScaner();
             }
           );
         } else {
-          alert('Щось пішло не так! Змінюємо сканер...');
-          scanerCurrent = 'new';
+          alert('Щось пішло не так! Спробуйте, будь ласка, пізніше');
           showScaner();
         }
       }
     }
-    //запуск нового сканера
-  } else if (scanerCurrent === 'new') {
-    window.console.log('START NEW');
-    document.getElementById('scanner-HTML5').classList.add('hide');
-    document.getElementById('reader').classList.add('hide');
-
-    lastCode = null;
-
-    document.getElementById('scanner-dynamsoft').classList.remove('hide');
-    try {
-      document.getElementById('dce-bg-loading').classList.remove('hide');
-      window.console.log(scanerNewObj);
-      if (scanerNewObj) {
-        await scanerNewObj.show();
-        document.getElementById('dce-bg-loading').classList.add('hide');
-      } else {
-        // if ( !Dynamsoft.DBR.BarcodeReader.license )
-            // Dynamsoft.DBR.BarcodeReader.license = scanerNewLicense;
-        console.log(Dynamsoft.DBR.BarcodeReader.license);
-        scanerNewObj = await Dynamsoft.DBR.BarcodeScanner.createInstance();
-
-        let settings = await scanerNewObj.getRuntimeSettings();
-        settings.maxAlgorithmThreadCount = 1;
-        settings.barcodeFormatIds =
-          Dynamsoft.DBR.EnumBarcodeFormat.BF_QR_CODE |
-          Dynamsoft.DBR.EnumBarcodeFormat.BF_EAN_13;
-
-        await scanerNewObj.updateRuntimeSettings(settings);
-
-        let scanSettings = await scanerNewObj.getScanSettings();
-        scanSettings.captureAndDecodeInParallel = false;
-        scanSettings.intervalTime = 100;
-        scanSettings.whenToPlaySoundforSuccessfulRead = 'unique';
-        scanSettings.whenToVibrateforSuccessfulRead = 'unique';
-        scanSettings.duplicateForgetTime = 1500;
-
-        await scanerNewObj.updateScanSettings(scanSettings);
-
-        let videoSettings = await scanerNewObj.getVideoSettings();
-        videoSettings.video.facingMode = { ideal: 'environment' };
-
-        await scanerNewObj.updateVideoSettings(videoSettings);
-
-        scanerNewObj.onUniqueRead = scanerResult;
-
-        scanerNewObj.onPlayed = async () => {
-          let rs = await scanerNewObj.getRuntimeSettings();
-          rs.region.regionLeft = 5;
-          rs.region.regionRight = 95;
-          rs.region.regionTop = 5;
-          rs.region.regionBottom = 95;
-          rs.region.regionMeasuredByPercentage = 1;
-          await scanerNewObj.updateRuntimeSettings(rs);
-        };
-
-        await scanerNewObj.setUIElement(
-          document.getElementById('barcode-scaner')
-        );
-        await scanerNewObj.setResolution(400, 400);
-        document.getElementById('dce-video-container').style.display = 'block';
-        await scanerNewObj.show();
-        document.getElementById('dce-bg-loading').classList.add('hide');
-      }
-    } catch (e) {
-      let err;
-
-      if (e.message.includes('network connection error')) {
-        err = 'Failed to connect to Dynamsoft License Server';
-      } else {
-        err = e.message || e;
-        window.console.log(err);
-      }
-
-      if (scanerNewObj && scanerNewObj.hide) {
-        scanerNewObj.hide();
-        scanerNewObj.destroyContext();
-        scanerNewObj = null;
-      }
-
-      if (channel === 'telegram') {
-        window.Telegram.WebApp.showAlert(
-          'Щось пішло не так... Повертаємось на попередній сканер',
-          () => {
-            scanerCurrent = 'old';
-            showScaner();
-          }
-        );
-      } else {
-        alert('Щось пішло не так... Повертаємось на попередній сканер');
-        scanerCurrent = 'old';
-        showScaner();
-      }
-    }
-  }
 }
 
-// смена сканера
-async function changeScaner() {
-  if (scanerCurrent === 'old' && scanerOldObj) {
-    if (scanerOldObj.getState() === Html5QrcodeScannerState.SCANNING) {
-      scanerOldObj.pause();
-    }
-  } else if (scanerCurrent === 'new' && scanerNewObj) {
-    scanerNewObj.hide();
-  }
+// // смена сканера
+// async function changeScaner() {
+//   if (scanerCurrent === 'old' && scanerOldObj) {
+//     if (scanerOldObj.getState() === Html5QrcodeScannerState.SCANNING) {
+//       scanerOldObj.pause();
+//     }
+//   } else if (scanerCurrent === 'new' && scanerNewObj) {
+//     scanerNewObj.hide();
+//   }
 
-  scanerCurrent = scanerCurrent === 'old' ? 'new' : 'old';
+//   scanerCurrent = scanerCurrent === 'old' ? 'new' : 'old';
 
-  showScaner();
-}
+//   showScaner();
+// }
 
 // метод принимает расшифрованный QR или штрих-код
 function scanerResult(code) {
