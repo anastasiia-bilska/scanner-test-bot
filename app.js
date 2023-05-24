@@ -93,7 +93,28 @@ function scannerResult(code) {
   //   return;
   // }
 
-  alert(typeof JSON.parse(code));
+  if (!lastCode) {
+    lastCode = realCode;
+    return;
+  }
+
+  const realCode = JSON.parse(code);
+  
+
+  if (realCode.id !== lastCode.id && realCode.name === lastCode.name) {
+    alert ('Це відео!');
+    return;
+  }
+
+  setTimeout(() => {
+    alert ('Схоже це не відео');
+    lastCode = realCode;
+    return;
+  }, 3000);
+
+  // lastCode = realCode;
+
+
 
   // if (channel === 'telegram') {
   //   window.Telegram.WebApp.showAlert(
@@ -104,16 +125,15 @@ function scannerResult(code) {
   //   );
   // } else {
   //   alert('QR успішно відскановано ✅\n Перевіряємо інформацію ⏳');
-  //   // sendDataToApi(code);
   // }
 }
 
 function sendDataToApi(code) {
   lastCode = code;
 
-  setTimeout(() => {
-    lastCode = null;
-  }, 1500);
+  // setTimeout(() => {
+  //   lastCode = null;
+  // }, 1500);
 
   // відправляємо дані на api
   // let xhr = new XMLHttpRequest();
