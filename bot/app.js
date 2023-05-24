@@ -89,23 +89,23 @@ async function showScanner() {
 
 // метод приймає розшифрований QR- чи штрих-код
 function scannerResult(code) {
-  // if (!code || (lastCode && lastCode === code)) {
-  //   return;
-  // }
+  if (!code || (lastCode && lastCode === code)) {
+    return;
+  }
 
   console.log(code);
 
-  // if (channel === 'telegram') {
-  //   window.Telegram.WebApp.showAlert(
-  //     'QR успішно відскановано ✅\n Перевіряємо інформацію ⏳',
-  //     () => {
-  //       sendDataToApi(code);
-  //     }
-  //   );
-  // } else {
-  //   alert('QR успішно відскановано ✅\n Перевіряємо інформацію ⏳');
-  //   // sendDataToApi(code);
-  // }
+  if (channel === 'telegram') {
+    window.Telegram.WebApp.showAlert(
+      'QR успішно відскановано ✅\n Перевіряємо інформацію ⏳',
+      () => {
+        sendDataToApi(code);
+      }
+    );
+  } else {
+    alert('QR успішно відскановано ✅\n Перевіряємо інформацію ⏳');
+    sendDataToApi(code);
+  }
 }
 
 function sendDataToApi(code) {
@@ -139,9 +139,9 @@ function sendDataToApi(code) {
   //   );
   // }
 
-  // setTimeout(redirect, 500);
+  setTimeout(redirect, 500);
 
-  // return;
+  return;
 }
 
 function redirect() {
