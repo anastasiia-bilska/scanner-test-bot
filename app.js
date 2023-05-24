@@ -93,7 +93,7 @@ function scannerResult(code) {
   //   return;
   // }
 
-  alert(code);
+  alert(typeof code);
 
   // if (channel === 'telegram') {
   //   window.Telegram.WebApp.showAlert(
