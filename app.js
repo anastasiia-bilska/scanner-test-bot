@@ -93,14 +93,13 @@ function scannerResult(code) {
   //   return;
   // }
 
+  const realCode = JSON.parse(code);
+
   if (!lastCode) {
     lastCode = realCode;
     return;
   }
-
-  const realCode = JSON.parse(code);
   
-
   if (realCode.id !== lastCode.id && realCode.name === lastCode.name) {
     alert ('Це відео!');
     return;
