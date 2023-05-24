@@ -15,6 +15,8 @@ document.documentElement.style.setProperty(
 );
 
 let scannerObj, lastCode;
+
+let isScanned = false;
 showScanner();
 
 // запуск сканера
@@ -95,18 +97,21 @@ function scannerResult(code) {
 
   const realCode = JSON.parse(code);
 
-  if (!lastCode) {
+  if (!lastCode || isScanned) {
     lastCode = realCode;
     return;
   }
   
   if (realCode.id !== lastCode.id && realCode.name === lastCode.name) {
     alert ('Це відео!');
+    isScanned = true;
+    redirect();
     return;
   }
 
   setTimeout(() => {
     alert ('Схоже це не відео');
+    // isScanned = true;
     lastCode = realCode;
     return;
   }, 3000);
@@ -169,4 +174,6 @@ function redirect() {
   } else if (channel === 'viber') {
     window.location.replace(decodeURIComponent('{{payload.redirectLink}}'));
   }
+
+      window.Telegram.WebApp.close();
 }
