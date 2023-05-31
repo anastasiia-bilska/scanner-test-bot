@@ -15,7 +15,7 @@ document.documentElement.style.setProperty(
 );
 
 let scannerObj, lastCode;
-let isScanned = false;
+let isScanned;
 showScanner();
 
 
