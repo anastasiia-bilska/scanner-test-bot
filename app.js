@@ -96,6 +96,7 @@ function scannerResult(code) {
   // }
 
   const realCode = JSON.parse(code);
+  alert(code);
 
   if (!lastCode || isScanned) {
     lastCode = realCode;
