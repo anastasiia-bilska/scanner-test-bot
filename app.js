@@ -15,9 +15,9 @@ document.documentElement.style.setProperty(
 );
 
 let scannerObj, lastCode;
-let isScanned;
-showScanner();
 
+let isScanned = false;
+showScanner();
 
 // запуск сканера
 async function showScanner() {
@@ -95,18 +95,14 @@ function scannerResult(code) {
   //   return;
   // }
 
-  const currentCode = JSON.parse(code);
-  alert(code)
+  const realCode = JSON.parse(code);
 
   if (!lastCode || isScanned) {
-    lastCode = currentCode;
+    lastCode = realCode;
     return;
   }
 
-  if (
-    // currentCode.scanningTime !== lastCode.scanningTime &&
-    currentCode.id === lastCode.id
-  ) {
+  if (realCode.id !== lastCode.id && realCode.name === lastCode.name) {
     alert('Це відео!');
     isScanned = true;
     redirect();
@@ -117,15 +113,10 @@ function scannerResult(code) {
     alert('Схоже це не відео');
     isScanned = true;
     lastCode = null;
-
-    // return;
+    return;
   }, 3000);
 
-  // setTimeout(() => {
-  //   isScanned = false;
-  // }, 5000);
-
-  // lastCode = currentCode;
+  // lastCode = realCode;
 
   // if (channel === 'telegram') {
   //   window.Telegram.WebApp.showAlert(
