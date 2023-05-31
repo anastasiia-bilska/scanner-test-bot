@@ -121,6 +121,8 @@ function scannerResult(code) {
      return;
    }
 
+   alert('hello!!!!!!')
+
    setTimeout(() => {
      alert('Схоже це не відео');
      isScanned = true;
