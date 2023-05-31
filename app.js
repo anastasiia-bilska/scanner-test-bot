@@ -95,15 +95,15 @@ function scannerResult(code) {
   //   return;
   // }
 
-  const realCode = JSON.parse(code);
+  const currentCode = JSON.parse(code);
 
   if (!lastCode || isScanned) {
-    lastCode = realCode;
+    lastCode = currentCode;
     return;
   }
   
-  if (realCode.id !== lastCode.id && realCode.name === lastCode.name) {
-    alert ('Це відео!');
+  if (currentCode.scanningTime !== lastCode.scanningTime && currentCode.id === lastCode.id) {
+    alert ('Це відео!', currentCode.scanningTime, new Date);
     isScanned = true;
     redirect();
     return;
@@ -111,12 +111,17 @@ function scannerResult(code) {
 
   setTimeout(() => {
     alert ('Схоже це не відео');
-    // isScanned = true;
-    lastCode = realCode;
+    isScanned = true;
+    lastCode = null;
+
     return;
   }, 3000);
 
-  // lastCode = realCode;
+  // setTimeout(() => {
+  //   isScanned = false;
+  // }, 5000);
+
+  // lastCode = currentCode;
 
 
 
@@ -177,3 +182,10 @@ function redirect() {
 
       window.Telegram.WebApp.close();
 }
+
+if (isScanned) {
+  
+}
+setTimeout(() => {
+  isScanned = false;
+}, 5000);
