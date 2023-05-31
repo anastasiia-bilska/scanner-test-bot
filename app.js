@@ -182,10 +182,3 @@ function redirect() {
 
       window.Telegram.WebApp.close();
 }
-
-if (isScanned) {
-  
-}
-setTimeout(() => {
-  isScanned = false;
-}, 5000);
