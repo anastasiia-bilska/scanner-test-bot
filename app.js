@@ -1,4 +1,5 @@
 'use strict';
+alert('hello')
 
 const urlParams = new URLSearchParams(window.location.search);
 const channel = urlParams.get('channel');
