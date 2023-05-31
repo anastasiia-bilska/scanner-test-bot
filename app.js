@@ -94,8 +94,9 @@ function scannerResult(code) {
   // if (!code || (lastCode && lastCode === code)) {
   //   return;
   // }
-
+  
   const currentCode = JSON.parse(code);
+  alert(code)
 
   if (!lastCode || isScanned) {
     lastCode = currentCode;
