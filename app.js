@@ -1,5 +1,7 @@
 'use strict';
 
+alert('hello')
+
 const urlParams = new URLSearchParams(window.location.search);
 const channel = urlParams.get('channel');
 const phone = urlParams.get('phone');
@@ -93,7 +95,7 @@ function scannerResult(code) {
     return;
   }
 
-  alert(JSON.parse(code));
+  alert(code);
 
   if (channel === 'telegram') {
     window.Telegram.WebApp.showAlert(
