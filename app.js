@@ -15,8 +15,6 @@ document.documentElement.style.setProperty(
 );
 
 let scannerObj, lastCode;
-
-let isScanned = false;
 showScanner();
 
 // запуск сканера
@@ -91,79 +89,59 @@ async function showScanner() {
 
 // метод приймає розшифрований QR- чи штрих-код
 function scannerResult(code) {
-  // if (!code || (lastCode && lastCode === code)) {
-  //   return;
-  // }
- alert('scanning');
-  const realCode = JSON.parse(code);
-
-  if (!lastCode || isScanned) {
-    lastCode = realCode;
+  if (!code || (lastCode && lastCode === code)) {
     return;
   }
 
-  if (realCode.id !== lastCode.id && realCode.name === lastCode.name) {
-    alert('Це відео!');
-    isScanned = true;
-    redirect();
-    return;
+  alert(code);
+
+  if (channel === 'telegram') {
+    window.Telegram.WebApp.showAlert(
+      'QR успішно відскановано ✅\n Перевіряємо інформацію ⏳',
+      () => {
+        sendDataToApi(code);
+      }
+    );
+  } else {
+    alert('QR успішно відскановано ✅\n Перевіряємо інформацію ⏳');
+    sendDataToApi(code);
   }
-
-  setTimeout(() => {
-    alert('Схоже це не відео');
-    isScanned = true;
-    lastCode = null;
-    return;
-  }, 3000);
-
-  // lastCode = realCode;
-
-  // if (channel === 'telegram') {
-  //   window.Telegram.WebApp.showAlert(
-  //     'QR успішно відскановано ✅\n Перевіряємо інформацію ⏳',
-  //     () => {
-  //       sendDataToApi(code);
-  //     }
-  //   );
-  // } else {
-  //   alert('QR успішно відскановано ✅\n Перевіряємо інформацію ⏳');
-  // }
 }
 
 function sendDataToApi(code) {
   lastCode = code;
 
-  // setTimeout(() => {
-  //   lastCode = null;
-  // }, 1500);
+  //   setTimeout(() => {
+  //     lastCode = null;
+  //   }, 1500);
 
-  // відправляємо дані на api
-  // let xhr = new XMLHttpRequest();
-  // xhr.open('POST', {{{msg.serverUrl}}}'/QRres', true);
-  // xhr.setRequestHeader('Content-Type', 'application/json');
+  //   // відправляємо дані на api
+  //   let xhr = new XMLHttpRequest();
+  //   xhr.open('POST', {{{msg.serverUrl}}}'/QRres', true);
+  //   xhr.setRequestHeader('Content-Type', 'application/json');
 
-  // if (channel === 'telegram') {
-  //   xhr.send(
-  //     JSON.stringify({
-  //       text: code,
-  //       channel: channel,
-  //       phone: phone,
-  //       user: window.Telegram.WebApp.initDataUnsafe.user,
-  //     })
-  //   );
-  // } else if (channel === 'viber') {
-  //   xhr.send(
-  //     JSON.stringify({
-  //       text: code,
-  //       channel: channel,
-  //       phone: phone,
-  //     })
-  //   );
-  // }
+  //   if (channel === 'telegram') {
+  //     xhr.send(
+  //       JSON.stringify({
+  //         text: code,
+  //         channel: channel,
+  //         phone: phone,
+  //         user: window.Telegram.WebApp.initDataUnsafe.user,
+  //       })
+  //     );
+  //   } else if (channel === 'viber') {
+  //     xhr.send(
+  //       JSON.stringify({
+  //         text: code,
+  //         channel: channel,
+  //         phone: phone,
+  //       })
+  //     );
+  //   }
 
-  // setTimeout(redirect, 500);
+  //   setTimeout(redirect, 500);
 
-  // return;
+  //   return;
 }
 
 function redirect() {
@@ -172,6 +150,4 @@ function redirect() {
   } else if (channel === 'viber') {
     window.location.replace(decodeURIComponent('{{payload.redirectLink}}'));
   }
-
-  window.Telegram.WebApp.close();
 }
