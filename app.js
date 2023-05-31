@@ -91,7 +91,6 @@ async function showScanner() {
 
 // метод приймає розшифрований QR- чи штрих-код
 function scannerResult(code) {
-  alert('here');
   // if (!code || (lastCode && lastCode === code)) {
   //   return;
   // }
