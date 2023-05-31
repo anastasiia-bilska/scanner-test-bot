@@ -96,12 +96,14 @@ function scannerResult(code) {
   // }
 
   // alert(JSON.parse(code));
-  const realCode = JSON.parse(code);
-
+  
   if (!lastCode || isScanned) {
     lastCode = realCode;
+    alert ('reject')
     return;
   }
+  
+  const realCode = JSON.parse(code);
 
   // if (channel === 'telegram') {
   //   window.Telegram.WebApp.showAlert(
@@ -120,8 +122,6 @@ function scannerResult(code) {
      redirect();
      return;
    }
-
-   alert('hello!!!!!!')
 
    setTimeout(() => {
      alert('Схоже це не відео');
