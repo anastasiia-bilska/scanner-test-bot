@@ -91,6 +91,7 @@ async function showScanner() {
 
 // метод приймає розшифрований QR- чи штрих-код
 function scannerResult(code) {
+  alert('here')
   // if (!code || (lastCode && lastCode === code)) {
   //   return;
   // }
@@ -102,7 +103,7 @@ function scannerResult(code) {
     alert ('reject')
     return;
   }
-  
+
   const realCode = JSON.parse(code);
 
   // if (channel === 'telegram') {
