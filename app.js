@@ -15,8 +15,6 @@ document.documentElement.style.setProperty(
 );
 
 let scannerObj, lastCode;
-
-let isScanned = false;
 showScanner();
 
 // запуск сканера
@@ -91,26 +89,29 @@ async function showScanner() {
 
 // метод приймає розшифрований QR- чи штрих-код
 function scannerResult(code) {
-  // if (!code || (lastCode && lastCode === code)) {
-  //   return;
-  // }
-  
-  const currentCode = JSON.parse(code);
-
-  if (!lastCode || isScanned) {
-    lastCode = currentCode;
+  if (!code || (lastCode && lastCode === code)) {
     return;
   }
-  
-  if (currentCode.scanningTime !== lastCode.scanningTime && currentCode.id === lastCode.id) {
-    alert ('Це відео!');
+
+  const currentCode = JSON.parse(code);
+
+  // if (!lastCode || isScanned) {
+  //   lastCode = currentCode;
+  //   return;
+  // }
+
+  if (
+    currentCode.scanningTime !== lastCode.scanningTime &&
+    currentCode.id === lastCode.id
+  ) {
+    alert('Це відео!');
     isScanned = true;
     redirect();
     return;
   }
 
   setTimeout(() => {
-    alert ('Схоже це не відео');
+    alert('Схоже це не відео');
     isScanned = true;
     lastCode = null;
 
@@ -122,8 +123,6 @@ function scannerResult(code) {
   // }, 5000);
 
   // lastCode = currentCode;
-
-
 
   // if (channel === 'telegram') {
   //   window.Telegram.WebApp.showAlert(
@@ -180,5 +179,5 @@ function redirect() {
     window.location.replace(decodeURIComponent('{{payload.redirectLink}}'));
   }
 
-      window.Telegram.WebApp.close();
+  window.Telegram.WebApp.close();
 }
