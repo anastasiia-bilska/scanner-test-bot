@@ -15,7 +15,9 @@ document.documentElement.style.setProperty(
 );
 
 let scannerObj, lastCode;
+let isScanned = false;
 showScanner();
+
 
 // запуск сканера
 async function showScanner() {
@@ -94,6 +96,7 @@ function scannerResult(code) {
   // }
 
   const currentCode = JSON.parse(code);
+  alert(code)
 
   if (!lastCode || isScanned) {
     lastCode = currentCode;
@@ -101,7 +104,7 @@ function scannerResult(code) {
   }
 
   if (
-    currentCode.scanningTime !== lastCode.scanningTime &&
+    // currentCode.scanningTime !== lastCode.scanningTime &&
     currentCode.id === lastCode.id
   ) {
     alert('Це відео!');
