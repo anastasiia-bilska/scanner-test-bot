@@ -96,7 +96,6 @@ function scannerResult(code) {
   // }
 
   const currentCode = JSON.parse(code);
-  alert(currentCode, code)
 
   if (!lastCode || isScanned) {
     lastCode = currentCode;
@@ -104,7 +103,7 @@ function scannerResult(code) {
   }
   
   if (currentCode.scanningTime !== lastCode.scanningTime && currentCode.id === lastCode.id) {
-    alert ('Це відео!', currentCode.scanningTime, new Date);
+    alert ('Це відео!');
     isScanned = true;
     redirect();
     return;
