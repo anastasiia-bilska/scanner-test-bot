@@ -89,16 +89,16 @@ async function showScanner() {
 
 // метод приймає розшифрований QR- чи штрих-код
 function scannerResult(code) {
-  if (!code || (lastCode && lastCode === code)) {
-    return;
-  }
+  // if (!code || (lastCode && lastCode === code)) {
+  //   return;
+  // }
 
   const currentCode = JSON.parse(code);
 
-  // if (!lastCode || isScanned) {
-  //   lastCode = currentCode;
-  //   return;
-  // }
+  if (!lastCode || isScanned) {
+    lastCode = currentCode;
+    return;
+  }
 
   if (
     currentCode.scanningTime !== lastCode.scanningTime &&
