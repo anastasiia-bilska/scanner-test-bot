@@ -114,7 +114,7 @@ function scannerResult(code) {
   //   alert('QR успішно відскановано ✅\n Перевіряємо інформацію ⏳');
   //   sendDataToApi(code);
   // }
-   if (realCode.id !== lastCode.id && realCode.name === lastCode.name) {
+   if (realCode.scanningTime !== lastCode.scanningTime && realCode.id === lastCode.id) {
      alert('Це відео!');
      isScanned = true;
      redirect();
