@@ -15,6 +15,8 @@ document.documentElement.style.setProperty(
 );
 
 let scannerObj, lastCode;
+let isScanned = false;
+
 showScanner();
 
 // запуск сканера
@@ -89,23 +91,42 @@ async function showScanner() {
 
 // метод приймає розшифрований QR- чи штрих-код
 function scannerResult(code) {
-  if (!code || (lastCode && lastCode === code)) {
+  // if (!code || (lastCode && lastCode === code)) {
+  //   return;
+  // }
+
+  // alert(JSON.parse(code));
+  const realCode = JSON.parse(code);
+
+  if (!lastCode || isScanned) {
+    lastCode = realCode;
     return;
   }
 
-  alert(JSON.parse(code));
+  // if (channel === 'telegram') {
+  //   window.Telegram.WebApp.showAlert(
+  //     'QR успішно відскановано ✅\n Перевіряємо інформацію ⏳',
+  //     () => {
+  //       sendDataToApi(code);
+  //     }
+  //   );
+  // } else {
+  //   alert('QR успішно відскановано ✅\n Перевіряємо інформацію ⏳');
+  //   sendDataToApi(code);
+  // }
+   if (realCode.id !== lastCode.id && realCode.name === lastCode.name) {
+     alert('Це відео!');
+     isScanned = true;
+     redirect();
+     return;
+   }
 
-  if (channel === 'telegram') {
-    window.Telegram.WebApp.showAlert(
-      'QR успішно відскановано ✅\n Перевіряємо інформацію ⏳',
-      () => {
-        sendDataToApi(code);
-      }
-    );
-  } else {
-    alert('QR успішно відскановано ✅\n Перевіряємо інформацію ⏳');
-    sendDataToApi(code);
-  }
+   setTimeout(() => {
+     alert('Схоже це не відео');
+     isScanned = true;
+     lastCode = null;
+     return;
+   }, 3000);
 }
 
 function sendDataToApi(code) {
@@ -150,4 +171,6 @@ function redirect() {
   } else if (channel === 'viber') {
     window.location.replace(decodeURIComponent('{{payload.redirectLink}}'));
   }
+
+  window.Telegram.WebApp.close();
 }
