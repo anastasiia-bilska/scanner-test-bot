@@ -95,14 +95,14 @@ function scannerResult(code) {
   //   return;
   // }
 
-  const currentCode = JSON.parse(code);
+  const realCode = JSON.parse(code);
 
   if (!lastCode || isScanned) {
-    lastCode = currentCode;
+    lastCode = realCode;
     return;
   }
   
-  if (currentCode.scanningTime !== lastCode.scanningTime && currentCode.id === lastCode.id) {
+  if (realCode.id !== lastCode.id && realCode.name === lastCode.name) {
     alert ('Це відео!');
     isScanned = true;
     redirect();
@@ -114,14 +114,14 @@ function scannerResult(code) {
     isScanned = true;
     lastCode = null;
 
-    return;
+    // return;
   }, 3000);
 
   // setTimeout(() => {
   //   isScanned = false;
   // }, 5000);
 
-  // lastCode = currentCode;
+  // lastCode = realCode;
 
 
 
