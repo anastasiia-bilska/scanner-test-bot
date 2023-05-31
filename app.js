@@ -173,3 +173,7 @@ function redirect() {
 
   window.Telegram.WebApp.close();
 }
+
+setTimeout(() => {
+  isScanned = false;
+}, 5000);
