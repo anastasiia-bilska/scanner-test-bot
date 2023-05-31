@@ -125,7 +125,6 @@ function scannerResult(code) {
      alert('Схоже це не відео');
      isScanned = true;
      lastCode = null;
-     return;
    }, 3000);
 }
 
