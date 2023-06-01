@@ -126,7 +126,7 @@ function scannerResult(code) {
     const text = date.toLocaleString('uk-UK', {
     timeZone: 'Europe/Kyiv',
   });
-    alert('real:', realCode.scanningTime, 'current:', text);
+    alert(`real: ${realCode.scanningTime}, current: ${text}`);
     // isScanned = true;
     // redirect();
     return;
