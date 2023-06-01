@@ -98,15 +98,14 @@ function scannerResult(code) {
   // }
 
   // alert(JSON.parse(code));
-  alert('here')
+  // alert('here')
+  const realCode = JSON.parse(code);
 
   if (!lastCode || isScanned) {
     lastCode = realCode;
     alert('reject');
     return;
   }
-
-  const realCode = JSON.parse(code);
  
   // if (channel === 'telegram') {
   //   window.Telegram.WebApp.showAlert(
