@@ -125,8 +125,10 @@ function scannerResult(code) {
   ) {
     alert('Це відео!');
     const date = new Date();
-    const text = date.toString()
-    alert(realCode.scanningTime, text);
+    const text = date.toLocaleString('uk-UK', {
+    timeZone: 'Europe/Kyiv',
+  });
+    alert('real:', realCode.scanningTime, 'current:', text);
     // isScanned = true;
     // redirect();
     return;
