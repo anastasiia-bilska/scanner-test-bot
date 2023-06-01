@@ -103,16 +103,8 @@ function scannerResult(code) {
     return;
   }
 
-  let realCode;
-  try {
-    realCode = JSON.parse(code);
-  } catch (e) {
-    alert('QR is not valid');
-    isScanned = true;
-    lastCode = null;
-    return false;
-  }
-
+  const realCode = JSON.parse(code);
+ 
   // if (channel === 'telegram') {
   //   window.Telegram.WebApp.showAlert(
   //     'QR успішно відскановано ✅\n Перевіряємо інформацію ⏳',
@@ -124,6 +116,7 @@ function scannerResult(code) {
   //   alert('QR успішно відскановано ✅\n Перевіряємо інформацію ⏳');
   //   sendDataToApi(code);
   // }
+  alert(realCode)
   if (
     realCode.scanningTime !== lastCode.scanningTime &&
     realCode.id === lastCode.id
