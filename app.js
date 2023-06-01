@@ -104,7 +104,7 @@ function scannerResult(code) {
     alert('reject');
     return;
   }
- 
+
   // if (channel === 'telegram') {
   //   window.Telegram.WebApp.showAlert(
   //     'QR успішно відскановано ✅\n Перевіряємо інформацію ⏳',
@@ -116,7 +116,7 @@ function scannerResult(code) {
   //   alert('QR успішно відскановано ✅\n Перевіряємо інформацію ⏳');
   //   sendDataToApi(code);
   // }
-  alert(realCode)
+  alert(realCode);
   if (
     realCode.scanningTime !== lastCode.scanningTime &&
     realCode.id === lastCode.id
@@ -124,9 +124,16 @@ function scannerResult(code) {
     alert('Це відео!');
     const date = new Date();
     const text = date.toLocaleString('uk-UK', {
-    timeZone: 'Europe/Kyiv',
-  });
-    alert(`real: ${realCode.scanningTime}, current: ${text}`);
+      timeZone: 'Europe/Kyiv',
+    });
+    const QRDate = new Date(realCode.scanningTime);
+    const currentDate = new Date(text);
+
+    const QRTime = QRDate.getTime();
+    const currentTime = currentDate.getTime();
+    const timeDifference = Math.abs(time2 - time1);
+
+    alert(`QR: ${QRTime}, current: ${currentTime}, diff: ${timeDifference}`);
     // isScanned = true;
     // redirect();
     return;
