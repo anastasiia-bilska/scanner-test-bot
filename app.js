@@ -124,6 +124,7 @@ function scannerResult(code) {
     realCode.id === lastCode.id
   ) {
     alert('Це відео!');
+    alert(realCode.scanningTime, new Date());
     isScanned = true;
     redirect();
     return;
