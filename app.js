@@ -1,5 +1,7 @@
 'use strict';
 
+alert('hello');
+
 const urlParams = new URLSearchParams(window.location.search);
 const channel = urlParams.get('channel');
 const phone = urlParams.get('phone');
@@ -180,6 +182,6 @@ function redirect() {
   window.Telegram.WebApp.close();
 }
 
-setTimeout(() => {
-  isScanned = false;
-}, 5000);
+// setTimeout(() => {
+//   isScanned = false;
+// }, 5000);
