@@ -125,8 +125,8 @@ function scannerResult(code) {
   ) {
     alert('Це відео!');
     alert(realCode.scanningTime, new Date());
-    isScanned = true;
-    redirect();
+    // isScanned = true;
+    // redirect();
     return;
   }
 
