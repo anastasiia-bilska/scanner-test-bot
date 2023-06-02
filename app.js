@@ -160,6 +160,9 @@ function scannerResult(code) {
     alert('Схоже це не відео');
     isScanned = true;
     lastCode = null;
+    setTimeout(() => {
+      isScanned = false;
+    })
   }, 3000);
 }
 
