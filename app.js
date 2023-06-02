@@ -127,14 +127,12 @@ function scannerResult(code) {
     const text = date.toLocaleString('uk-UK', {
       timeZone: 'Europe/Kyiv',
     });
-    const QRDate = new Date(realCode.scanningTime);
-    const currentDate = new Date(text);
+    const QRDate = Date.parse(realCode.scanningTime);
+    const currentDate = Date.parse(text);
 
-    const QRTime = QRDate.getTime();
-    const currentTime = currentDate.getTime();
-    const timeDifference = Math.abs(currentTime - QRTime);
+    const timeDifference = Math.abs(currentDate - QRDate);
 
-    alert(`QR: ${QRTime}, current: ${currentTime}, diff: ${timeDifference}`);
+    alert(`QR: ${QRDate}, current: ${currentDate}, diff: ${timeDifference}`);
     scannerObj.resume();
     // isScanned = true;
     // redirect();
