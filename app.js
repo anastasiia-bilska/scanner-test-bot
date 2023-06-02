@@ -122,6 +122,7 @@ function scannerResult(code) {
     realCode.id === lastCode.id
   ) {
     alert('Це відео!');
+    scannerObj.stop();
     const date = new Date();
     const text = date.toLocaleString('uk-UK', {
       timeZone: 'Europe/Kyiv',
@@ -131,9 +132,10 @@ function scannerResult(code) {
 
     const QRTime = QRDate.getTime();
     const currentTime = currentDate.getTime();
-    const timeDifference = Math.abs(time2 - time1);
+    const timeDifference = Math.abs(currentTime - QRTime);
 
     alert(`QR: ${QRTime}, current: ${currentTime}, diff: ${timeDifference}`);
+    scannerObj.resume();
     // isScanned = true;
     // redirect();
     return;
