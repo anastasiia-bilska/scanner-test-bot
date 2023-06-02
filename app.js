@@ -1,7 +1,5 @@
 'use strict';
 
-alert('hello')
-
 const urlParams = new URLSearchParams(window.location.search);
 const channel = urlParams.get('channel');
 const phone = urlParams.get('phone');
@@ -144,7 +142,7 @@ function scannerResult(code) {
 
     const timeDifference = Math.abs(currentDate - QRDate);
 
-    alert(`QR: ${QRDate}, current: ${currentDate}, diff: ${timeDifference}`);
+    alert(`QRDate: ${QRDate}, currentDate: ${text}, QRTime: ${QRDate}, currentTime: ${currentDate}, diffTime: ${timeDifference}`);
     scannerObj.resume();
     // isScanned = true;
     // redirect();
