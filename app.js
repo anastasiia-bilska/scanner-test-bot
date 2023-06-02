@@ -101,7 +101,7 @@ function scannerResult(code) {
 
   if (!lastCode || isScanned) {
     lastCode = realCode;
-    alert('reject');
+    // alert('reject');
     return;
   }
 
@@ -116,7 +116,6 @@ function scannerResult(code) {
   //   alert('QR успішно відскановано ✅\n Перевіряємо інформацію ⏳');
   //   sendDataToApi(code);
   // }
-  alert(realCode);
   if (
     realCode.scanningTime !== lastCode.scanningTime &&
     realCode.id === lastCode.id
@@ -132,7 +131,7 @@ function scannerResult(code) {
       minute: '2-digit',
       second: '2-digit',
       hour12: false,
-      timeZone: 'Europe/Kiev', // Specify the Ukraine time zone here
+      timeZone: 'Europe/Kiev',
     };
 
     const formattedDate = date.toLocaleString('en-US', options);
@@ -142,9 +141,9 @@ function scannerResult(code) {
 
     const timeDifference = Math.abs(currentDate - QRDate);
 
-    alert(
-      `QRDate: ${realCode.scanningTime}, currentDate: ${text}, QRTime: ${QRDate}, currentTime: ${currentDate}, diffTime: ${timeDifference}`
-    );
+    // alert(
+    //   `QRDate: ${realCode.scanningTime}, currentDate: ${text}, QRTime: ${QRDate}, currentTime: ${currentDate}, diffTime: ${timeDifference}`
+    // );
 
     if (timeDifference <= 3000) {
       alert('різниця між поточним часом і часом в qr-коді коректна!')
