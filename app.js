@@ -163,6 +163,7 @@ function scannerResult(code) {
     lastCode = null;
 
     setTimeout(() => {
+      isScanned = true;
       scannerObj.resume();
     }, 3000)
   }, 3000);
