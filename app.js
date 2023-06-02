@@ -124,7 +124,7 @@ function scannerResult(code) {
     realCode.id === lastCode.id
   ) {
     alert('Це відео!');
-    scannerObj.stop();
+    scannerObj.pause();
     const date = new Date();
     const options = {
       year: 'numeric',
