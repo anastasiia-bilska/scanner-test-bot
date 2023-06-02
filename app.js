@@ -145,9 +145,15 @@ function scannerResult(code) {
     alert(
       `QRDate: ${realCode.scanningTime}, currentDate: ${text}, QRTime: ${QRDate}, currentTime: ${currentDate}, diffTime: ${timeDifference}`
     );
+
+    if (timeDifference <= 3000) {
+      alert('різниця між поточним часом і часом в qr-коді коректна!')
+    } else {
+      alert('різниця між поточним часом і часом в qr-коді надто велика!');
+    }
     scannerObj.resume();
-    // isScanned = true;
-    // redirect();
+    isScanned = true;
+    redirect();
     return;
   }
 
