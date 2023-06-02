@@ -142,7 +142,9 @@ function scannerResult(code) {
 
     const timeDifference = Math.abs(currentDate - QRDate);
 
-    alert(`QRDate: ${QRDate}, currentDate: ${text}, QRTime: ${QRDate}, currentTime: ${currentDate}, diffTime: ${timeDifference}`);
+    alert(
+      `QRDate: ${realCode.scanningTime}, currentDate: ${text}, QRTime: ${QRDate}, currentTime: ${currentDate}, diffTime: ${timeDifference}`
+    );
     scannerObj.resume();
     // isScanned = true;
     // redirect();
