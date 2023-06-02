@@ -157,11 +157,13 @@ function scannerResult(code) {
   }
 
   setTimeout(() => {
+    scannerObj.pause();
     alert('Схоже це не відео');
     isScanned = true;
     lastCode = null;
+
     setTimeout(() => {
-      isScanned = false;
+      scannerObj.resume();
     }, 3000)
   }, 3000);
 }
