@@ -1,5 +1,7 @@
 'use strict';
 
+alert('hello')
+
 const urlParams = new URLSearchParams(window.location.search);
 const channel = urlParams.get('channel');
 const phone = urlParams.get('phone');
@@ -124,9 +126,19 @@ function scannerResult(code) {
     alert('Це відео!');
     scannerObj.stop();
     const date = new Date();
-    const text = date.toLocaleString('uk-UK', {
-      timeZone: 'Europe/Kyiv',
-    });
+    const options = {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false,
+      timeZone: 'Europe/Kiev', // Specify the Ukraine time zone here
+    };
+
+    const formattedDate = date.toLocaleString('en-US', options);
+    const text = formattedDate;
     const QRDate = Date.parse(realCode.scanningTime);
     const currentDate = Date.parse(text);
 
