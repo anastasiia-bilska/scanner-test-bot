@@ -162,7 +162,7 @@ function scannerResult(code) {
     lastCode = null;
     setTimeout(() => {
       isScanned = false;
-    })
+    }, 3000)
   }, 3000);
 }
 
