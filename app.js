@@ -8,9 +8,9 @@ const getIP = async () => {
  IP = IPData.query;
 };
 
-document.addEventListener('loadstart', async () => {
-  getIP();
-});
+// document.addEventListener('loadstart', async () => {
+//   getIP();
+// });
 
 getIP();
 
