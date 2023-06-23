@@ -1,6 +1,6 @@
 'use strict';
 
-let IP;
+let IP = '185.143.147.141';
 const getIP = async () => {
   const response = await fetch('http://ip-api.com/json/?fields=query');
   const IPData = await response.json();
