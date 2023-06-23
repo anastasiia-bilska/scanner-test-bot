@@ -166,7 +166,7 @@ function scannerResult(code) {
     }
 
     if (realCode.ip !== null) {
-      alert(realCode.ip, IP)
+      alert('generator IP: ' + realCode.ip, ', scanner IP: ' + IP)
       if (realCode.ip === IP) {
         alert('IP адреси співпадають!');
       } else {
