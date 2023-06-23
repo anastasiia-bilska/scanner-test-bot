@@ -1,9 +1,23 @@
 'use strict';
 
+let IP = null;
+
+const getIP = async () => {
+  const response = await fetch('http://ip-api.com/json/?fields=query');
+  const IPData = await response.json();
+
+  return IPData.query;
+};
+
+document.addEventListener('DOMContentLoaded', async () => {
+  IP = await getIP();
+
+  console.log(IP);
+})
+
 const urlParams = new URLSearchParams(window.location.search);
 const channel = urlParams.get('channel');
 const phone = urlParams.get('phone');
-
 if (channel === 'telegram') {
   window.Telegram.WebApp.expand();
 }
@@ -146,10 +160,17 @@ function scannerResult(code) {
     // );
 
     if (timeDifference <= 3000) {
-      alert('різниця між поточним часом і часом в qr-коді коректна!')
+      alert('різниця між поточним часом і часом в qr-коді коректна!');
     } else {
       alert('різниця між поточним часом і часом в qr-коді надто велика!');
     }
+
+    if (realCode.ip === IP) {
+      alert('IP адреси співпадають!')
+    } else {
+      alert('IP адреси НЕ співпадають!');
+    }
+
     scannerObj.resume();
     isScanned = true;
     redirect();
@@ -165,7 +186,7 @@ function scannerResult(code) {
     setTimeout(() => {
       isScanned = false;
       scannerObj.resume();
-    }, 3000)
+    }, 3000);
   }, 3000);
 }
 
