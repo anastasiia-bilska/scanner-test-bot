@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   IP = await getIP();
 
   console.log(IP);
-})
+});
 
 const urlParams = new URLSearchParams(window.location.search);
 const channel = urlParams.get('channel');
@@ -165,10 +165,12 @@ function scannerResult(code) {
       alert('різниця між поточним часом і часом в qr-коді надто велика!');
     }
 
-    if (realCode.ip === IP) {
-      alert('IP адреси співпадають!')
-    } else {
-      alert('IP адреси НЕ співпадають!');
+    if (realCode.ip !== null) {
+      if (realCode.ip === IP) {
+        alert('IP адреси співпадають!');
+      } else {
+        alert('IP адреси НЕ співпадають!');
+      }
     }
 
     scannerObj.resume();
