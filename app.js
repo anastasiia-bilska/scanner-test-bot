@@ -1,17 +1,18 @@
 'use strict';
 
+let IP;
 const getIP = async () => {
   const response = await fetch('http://ip-api.com/json/?fields=query');
   const IPData = await response.json();
 
-  return IPData.query;
+ IP = IPData.query;
 };
 
-// document.addEventListener('DOMContentLoaded', async () => {
-//   IP = await getIP();
+document.addEventListener('loadstart', async () => {
+  getIP();
+});
 
-//   console.log(IP);
-// });
+getIP();
 
 const urlParams = new URLSearchParams(window.location.search);
 const channel = urlParams.get('channel');
@@ -102,7 +103,7 @@ async function showScanner() {
 }
 
 // метод приймає розшифрований QR- чи штрих-код
-async function scannerResult(code) {
+function scannerResult(code) {
   // if (!code || (lastCode && lastCode === code)) {
   //   return;
   // }
@@ -164,7 +165,6 @@ async function scannerResult(code) {
     }
 
     if (realCode.ip !== null) {
-      const IP = await getIP();
 
       alert('generator IP: ' + realCode.ip + ', scanner IP: ' + IP)
       if (realCode.ip === IP) {
