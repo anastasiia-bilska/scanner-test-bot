@@ -159,14 +159,14 @@ function scannerResult(code) {
     //   `QRDate: ${realCode.scanningTime}, currentDate: ${text}, QRTime: ${QRDate}, currentTime: ${currentDate}, diffTime: ${timeDifference}`
     // );
 
-    if (timeDifference <= 3000) {
+    if (timeDifference <= 4000) {
       alert('різниця між поточним часом і часом в qr-коді коректна!');
     } else {
       alert('різниця між поточним часом і часом в qr-коді надто велика!');
     }
 
     if (realCode.ip !== null) {
-      alert('generator IP: ' + realCode.ip, ', scanner IP: ' + IP)
+      alert('generator IP: ' + realCode.ip + ', scanner IP: ' + IP)
       if (realCode.ip === IP) {
         alert('IP адреси співпадають!');
       } else {
