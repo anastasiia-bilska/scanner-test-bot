@@ -1,7 +1,5 @@
 'use strict';
 
-let IP = null;
-
 const getIP = async () => {
   const response = await fetch('http://ip-api.com/json/?fields=query');
   const IPData = await response.json();
@@ -9,11 +7,11 @@ const getIP = async () => {
   return IPData.query;
 };
 
-document.addEventListener('DOMContentLoaded', async () => {
-  IP = await getIP();
+// document.addEventListener('DOMContentLoaded', async () => {
+//   IP = await getIP();
 
-  console.log(IP);
-});
+//   console.log(IP);
+// });
 
 const urlParams = new URLSearchParams(window.location.search);
 const channel = urlParams.get('channel');
@@ -104,7 +102,7 @@ async function showScanner() {
 }
 
 // метод приймає розшифрований QR- чи штрих-код
-function scannerResult(code) {
+async function scannerResult(code) {
   // if (!code || (lastCode && lastCode === code)) {
   //   return;
   // }
@@ -166,6 +164,8 @@ function scannerResult(code) {
     }
 
     if (realCode.ip !== null) {
+      const IP = await getIP();
+
       alert('generator IP: ' + realCode.ip + ', scanner IP: ' + IP)
       if (realCode.ip === IP) {
         alert('IP адреси співпадають!');
